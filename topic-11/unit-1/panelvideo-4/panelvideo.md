@@ -1,3 +1,0 @@
-Sensoren
-
-Video zu Sensoren
