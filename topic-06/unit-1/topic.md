@@ -1,2 +1,1 @@
-Challenge - Python und Informatik 2
-
+Challenge - Data Science und SQL
