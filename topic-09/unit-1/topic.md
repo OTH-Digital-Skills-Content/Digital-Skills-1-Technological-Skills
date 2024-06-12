@@ -1,1 +1,1 @@
-Challenge - Web
+Challenge - Automation

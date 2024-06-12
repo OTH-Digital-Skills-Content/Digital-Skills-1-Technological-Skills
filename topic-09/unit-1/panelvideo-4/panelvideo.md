@@ -1,3 +1,0 @@
-JavaScript
-
-Video zu JavaScript
