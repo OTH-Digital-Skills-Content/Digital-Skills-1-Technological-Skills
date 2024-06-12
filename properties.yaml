@@ -3,7 +3,7 @@ moodle: https://elearning.oth-regensburg.de
 # youtube: https://www.youtube.com/
 # zoom: https://zoom.us/
 credits: Projekt BeDiSc, OTH Regensburg
-parent: course/digital-skills-alle-semester-github.netlify.app
+#parent: course/digital-skills-alle-semester-github.netlify.app
 
 auth: 1
 ignorepin: 1994
