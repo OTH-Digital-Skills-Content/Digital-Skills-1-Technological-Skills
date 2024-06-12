@@ -1,4 +1,4 @@
-# Challenge - SQL und Data Science
+# Challenge - IoT
 
 
-Python und SQL (SQLite)
+Internet of Things, micro:bit, Workshop
