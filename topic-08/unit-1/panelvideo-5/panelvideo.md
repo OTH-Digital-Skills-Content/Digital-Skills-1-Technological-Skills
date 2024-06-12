@@ -1,3 +1,0 @@
-CREATE TABLE
-
-Video zu CREATE TABLE

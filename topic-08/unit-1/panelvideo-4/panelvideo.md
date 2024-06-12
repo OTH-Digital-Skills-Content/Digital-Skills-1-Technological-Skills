@@ -1,3 +1,3 @@
-DBMS, SQLite
+Sensoren
 
-Video zu DBMS, SQLite
+Video zu Sensoren

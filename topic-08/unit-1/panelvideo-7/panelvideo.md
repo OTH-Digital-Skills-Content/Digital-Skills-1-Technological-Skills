@@ -1,3 +1,0 @@
-SELECT
-
-Video zu SELECT
