@@ -1,4 +1,4 @@
-# Challenge - Python und Informatik
+# Challenge - Python und Informatik 2
 
 
-Einführung Replit, Python
+Arrays, Listen, Algorithmen
