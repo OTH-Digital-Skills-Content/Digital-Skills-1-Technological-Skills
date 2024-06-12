@@ -2,7 +2,6 @@
 order: 1
 ---
 
+Data Science und SQL
 
-Python und Informatik 2
-
-Slides zu Python und Informatik 2
+Slides zu Data Science und SQL
