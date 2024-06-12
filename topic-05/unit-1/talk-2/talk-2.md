@@ -6,6 +6,7 @@ icon:
   color: lightblue
 ---
 
-Cheat Sheet Challenge 4
 
-Cheat Sheet zu Python und Informatik
+Cheat Sheet Challenge 5
+
+Cheat Sheet zu Python und Informatik 2

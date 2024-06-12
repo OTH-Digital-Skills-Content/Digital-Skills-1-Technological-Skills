@@ -2,6 +2,7 @@
 order: 1
 ---
 
-Python und Informatik
 
-Slides zu Python und Informatik
+Python und Informatik 2
+
+Slides zu Python und Informatik 2

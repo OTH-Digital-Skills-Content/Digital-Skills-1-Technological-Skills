@@ -1,3 +1,3 @@
-Python und Informatik
+Python 2
 
-Video zu Python und Informatik
+Video zu Python 2
