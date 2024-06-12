@@ -1,4 +1,4 @@
-# Challenge - Python und Informatik 2
+# Challenge - SQL und Data Science
 
 
-Arrays, Listen, Algorithmen
+Python und SQL (SQLite)
