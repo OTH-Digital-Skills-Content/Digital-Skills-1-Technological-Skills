@@ -6,651 +6,426 @@ icon:
   color: orange
 ---
 
-Note Challenge 5
+Note Challenge 7
 
-Debugging, Listen und Algorithmen
+Data Science und SQL
 
 [[toc]]
 
 
+Diese Challenge beschäftigt sich zum einen mit Anwendungen aus dem Bereich der Data Science und zum anderen mit Datenbanken und der dazugehörigen Anfragesprache SQL.
 
-> Alle Codebeispiele für diese Challenge sind auf replit.com abrufbar:
-> [https://replit.com/@mheckner/Digital-Skills04Python2#main.py](https://replit.com/@mheckner/Digital-Skills04Python2#main.py)
-> Mit einem Klick auf "Fork Repl" rechts oben können Sie diese in ein eignes Repl übertragen und auch Änderungen ausprobieren.
+# #1 Data Science
+
+Wir werden uns nun Anwendungen aus dem Bereich Data Science anschauen. Diese verfolgen die Aufgabe, aus Daten Wissen zu extrahieren. Was wir hier machen, ist nur der aller simpelste Fall: Die Daten liegen in strukturierter Form vor (so ähnlich wie in einer Excel-Tabelle mit Zeilen und Spalten) und wir berechnen aus den einzelnen Datenwerten ein Ergebnis. In der Realität können die zu analysierenden Daten aber auch unstrukturiert sein, also z. B. Texte oder Bilder. Data Science kann dann dabei helfen, Informationen aus diesen Daten zu extrahieren, beispielsweise, worum es in dem Text geht oder wer oder was auf dem Bild zu sehen ist.
 
 
+## CSV: Comma-Separated Values
 
-# Eigene Funktionen mit Rückgabewerten
+Die folgenden Zeilen zeigen den Inhalt einer Datei robot_log.csv. In diese Datei hat ein Roboter reingeschrieben, wann er wie weit gefahren ist.
 
-Funktionen können nicht nur Ausgaben erzeugen, sondern auch Ergebnisse zurückliefen. Beispielsweise liefert die Funktion ```get_string``` den von der Kommandozeile eingelesenen String als Ergebnis zurück.
+```jsx
+timestamp,distance
+2022-05-01 15:38:12.155,58
+2022-05-01 15:40:48.483,144
+2022-05-01 16:29:21:766,92
+```
 
-Funktionen erzeugen Rückgabewerte durch das Schlüsselwort ```return```. Das folgende Beispiel liest zwei Zahlen von der Kommandozeile ein und berechnet das Produkt der beiden Zahlen in einer eigenen Funktion (```calculator1.py```):
+Finden Sie die Kommas? Comma-separated Values bedeutet Komma-getrennte Werte. Jede Zeile ist ein Datensatz und in unserer Datei besteht jeder Datensatz aus genau zwei Werten: Ein Zeitstempel und eine Zahl. Um kurz nach halb vier am 1. Mai ist der Roboter 58cm gefahren.
+
+CSV-Dateien werden auch oft als Datenaustauschformat verwendet. Der Betreiber eines Online-Shops kann sich zum Beispiel eine CSV-Datei mit allen Kundendaten herunterladen. Dann steht in jeder Zeile: `Kundennummer,Vorname,Nachname`, usw. Und diese Datei kann man dann analysieren, in ein anderes Programm laden oder in eine Datenbank importieren. Datenbanken schauen wir uns später an.
+
+
+## Data Science mit Python
+
+Ich hätte gerne ein Programm, was folgendes macht:
+
+1. Daten aus der CSV-Datei lesen
+2. Die Summe über alle vom Roboter gefahrene Strecken (in cm) berechnen und ausgeben
+
+Um dies zu tun, gibt es viele Möglichkeiten. Man könnte die ganze CSV-Datei in eine String-Variable einlesen. Dann muss man sich aber selbst drum kümmern, die einzelnen Werte, die sich zwischen den Kommas befinden, zu extrahieren. Es gibt aber auch Python-Bibliotheken, die einem diese Arbeit abnehmen. Eine solche Bibliothek nennt sich “csv”, die würde im Prinzip ausreichen. Aber ich möchte dennoch gerne die Bibliothek pandas verwenden. Die kann nämlich aus unserer Datei einen sogenannten Pandas Dataframe erzeugen, auf welchem sich leicht arbeiten lässt! Pandas kommt für Data-Science-Anwendungen sehr oft zum Einsatz. In Replit muss das Paket zunächst installiert werden. Dazu sucht man im Bereich “Packages” nach “pandas3” und klickt auf das kleine Plus-Symbol.
 
 ```python
-from cs50 import get_int
-
-def main():
-  x = get_int("x: ")
-  y = get_int("y: ")
-
-  sum = calculate_sum(x, y)
-  print(sum)
-
-def calculate_sum(x, y):
-  sum = x + y
-  return sum
-
-if __name__ == "__main__":
-  main()
+import pandas as pd
+df = pd.read_csv('/media/tmpfs/robot_log.csv', sep=',')
 ```
 
-Das folgende Programm liest eine positive Zahl von der Kommandozeile ein (```positive.py```):
+Zuerst wird das Pandas-Paket importiert und pd genannt. Das heißt, ab nun kann man mit `pd.` auf die Funktionen im Paket zugreifen. Die Funktion, die wir brauchen nennt sich `read_csv`. Hätten wir eine Excel-Datei vorliegen, würden wir `read_excel` verwenden. Als Parameter übergeben wir der Funktion den Pfad zu unserer CSV-Datei, die eingelesen werden soll. Danach lassen sich noch jede Menge Optionen setzen, in unserem Falle setzen wir `sep=’,’`, weil das Spaltentrennzeichen in unserer Datei ein Komma ist. Auch wenn das Format CSV (Comma-separated Values) heißt, werden oft auch Semikolons, senkrechte Striche, Tabs oder andere Zeichen als Spaltentrenner verwendet.
+
+Als Resultat nach dem Einlesen der Datei haben wir nun einen *Pandas Dataframe* vorliegen. Daher nennen wir die Variable auch `df`. Mann kann sich einen Dataframe vorstellen als eine Tabelle, die aus Zeilen und Spaten besteht. In unserem Fall haben wir 3 Zeilen und 2 Spalten. Die Zeilen werden einfach durchnummeriert, also 0, 1 und 2 (wie bei einer Liste) und die Spalten haben jeweils einen eigenen Namen: “timestamp” und “distance”. Die Spaltennamen werden automatisch aus der ersten Zeile der CSV-Datei entnommen, dem sogenannten Header. Besäße unsere CSV-Datei keinen Header, könnte man die Spaltennamen auch manuell setzen mit dem Parameter `names=['timestamp', 'distance']`.
+
+Ähnlich wie bei Listen kommt man nun mittels `len(df)` an die Anzahl der Zeilen im Dataframe. In unserem Fall liefert das den Wert 3.
+
+Über das Attribut `loc` erhalten wir Zugriff auf bestimmte Zeile im Dataframe. Die erste Zeile ist `loc[0]`, die zweite `loc[1]`, usw. Und innerhalb einer Zeile kommen wir dann an die Werte in den einzelnen Spalten. Das folgende Beispiel gibt uns den Wert in der Spalte “distance” in der ersten Zeile aus:
 
 ```python
-from cs50 import get_int
-
-def main():
-  positive_num = get_positive_int()
-  print(positive_num)
-
-def get_positive_int():
-  while True:
-    num = get_int("Enter positive number: ")
-    if num >= 0:
-      return num
-
-if __name__ == "__main__":
-  main()
+print(df.loc[0,'distance’])
 ```
 
-
-
-# Debugging
-
-**Bugs** sind Fehler in Programmen, die dazu führen, dass das Programm etwas anderes tut als von den Entwicklern vorgesehen. **Debugging** ist der Prozess diese Bugs zu finden und zu beheben.
-
-Der Name Bug geht möglicherweise auf ein echtes Insekt zurück, das 1947 in dem Supercomputer Harvard Mark II gefunden wurde und das einen Fehler des Supercomputers verursachte ([https://en.wikipedia.org/wiki/Harvard_Mark_II](https://en.wikipedia.org/wiki/Harvard_Mark_II)):
-
-![05_first_bug](./img/05_first_bug.jpeg)
-
-Das folgende Programm ist fehlerhaft (= buggy) und soll **drei** Blöcke (d.h. ```#```-Zeichen) ausgeben (```buggy.py```):
-
-~~~python
-def main():
-  i = 0
-  while (i <= 3):
-    print("#")
-    i += 1
-
-if __name__ == "__main__":
-  main()
-~~~
-
-Das Programm lässt sich über die Shell ausführen, enthält aber einen logischen Fehler, da es 4 Blöcke ausgibt:
-
-~~~shell
-$ python3 buggy.py 
-#
-#
-#
-#
-~~~
-
-Möglicherweise wird der Fehler bereits deutlich, aber für das Debugging, lässt sich temporär eine weitere ```print```-Funktion in den Code integrieren:
-
-~~~python
-def main():
-  i = 0
-  while (i <= 3):
-    print("#")
-    i += 1
-    print(f"i is: {i}")
-
-if __name__ == "__main__":
-  main()
-~~~
-
-Die Ausgabe des Programms zeigt jetzt, dass ```i``` mit dem Wert 0 gestartet ist und der Wert erhöht wurde, bis ```i``` den Wert 4 angenommen hat:
-
-~~~shell
-$ python3 buggy.py 
-#
-i is: 1
-#
-i is: 2
-#
-i is: 3
-#
-i is: 4
-~~~
-
-Um den Wert 4 anzunehmen, muss die Schleife mit dem Startwert 3 für ```i``` begonnen haben. Dies ist ein Durchlauf zu viel. Ändert man die Bedingung von ```(i <= 3)``` auf ```(i < 3)``` funktioniert das Programm wie vorgesehen, und der Bug wurde identifiziert und behoben. 
-
-Die vorgestellte Art Fehler durch ```print``` Anweisungen zu finden bezeichnet man in allen Programmiersprachen als **Printlining**. 
-
-Zusätzlich bietet replit einen **Debugger**, d.h. ein Werkzeug das es erlaubt den Code während der Laufzeit Schritt für Schritt nachzuverfolgen und Variablen und andere Informationen anzusehen.
-
-Zuerst klickt man dafür im Editor von replit in der vierten Zeile auf die Spalte links von den Zeilennnummern des Texteditors, sodass ein blauer Punkt erscheint:
-
-![05_replit_debugger](./img/05_replit_debugger.png)
-
-Um den Debugger in replit aufzurufen, klickt man anschließend auf das Pfeilsymbol in der linken Seitenleiste von replit:
-
-![05_replit_breakpoint_set](./img/05_replit_breakpoint_set.png)
-
-Der Debugger zeigt an, dass ein Breakpoint in ```buggy.py``` angelegt wurde.
-
-Um den Programm mit dem Debugger auszuführen klickt man jetzt auf den blauen *Play-Button* (anstatt das Programm über die Shell zu starten). Das Programm bleibt anschließend am blauen Punkt (= **Breakpoint**) stehen, und erlaubt einen Blick in das Programm zur Laufzeit.
-
-**Achtung: ** Der Debugger in replit befindet sich noch im Betastadium, d.h. es ist nicht möglich beliebige Dateien zu debuggen. Um den Debugger nutzen zu können, muss der fehlerhafte Code in eine Datei ```main.py``` kopiert werden!
-
-Eine weitere Möglichkeit, um Fehler in Programmen ist **Rubber-Duck-Debugging**. ([https://en.wikipedia.org/wiki/Rubber_duck_debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging)), bei dem man sich als Entwickler dazu zwingt den eigenen Code einem Quietscheentchen (oder einem anderen Objekt erklärt). Durch das laute Durchsprechen des eigenen Codes fallen einem häufig Fehler auf.
-
-# Listen
-
-Das folgende Beispiel berechnet den Durchschnitt aus drei Variablen (```score0.py```):
-
-~~~python
-def main():
-  score1 = 72
-  score2 = 73
-  score3 = 33
-
-  average = (score1 + score2 + score3) / 3
-  print(f"Durchschnitt: {average}")
-
-if __name__ == "__main__":
-  main()
-~~~
-
-Das Programm gibt den Durchschnitt korrekt aus, muss aber für jeden Wert der für die Berechnung des Durchschnitts verwendet werden soll eine neue Variable anlegen. Je mehr Werte in die Berechnung einfließen, desto unhandlicher und unübersichtlicher wird das Programm.
-
-Python bietet zur Lösung dieses Problems den Datentyp ```list```, der es ermöglicht eine Sequenz von mehreren Werten nacheinander in einer einzigen Variable abzuspeichern.
-
-Der Code ```scores = [72, 73, 33]``` erzeugt eine Liste aus drei Werten in Python. Auf diese Werte kann später beispielsweise mit ```scores[0]``` wieder zugegriffen werden (```score1.py```):
-
-~~~python
-def main():
-  scores = [72, 73, 33]
-
-  average = (scores[0] + scores[1] + scores[2]) / 3
-  print(f"Durchschnitt: {average}")
-
-if __name__ == "__main__":
-  main()
-~~~
-
-```scores[0]``` bezeichnet dabei das erste Element (Listen fangen bei ```0``` an zu zählen), während ```scores[2]``` sich auf das dritte Element (=```33```) bezieht.
-
-Häufig möchte man die Werte von 2 Variablen vertauschen. Das folgende Codebeispiel definiert zwei Variablen ```a``` und ```b```, und versucht die beiden Werte zu tauschen (```swap_buggy.py```):
+Mit diesem Wissen können wir jetzt unsere kleine Aufgabe schon lösen! Wir können eine `for`-Schleife von 0 bis zur Länge des Dataframes `len(df)-1` laufen lassen und in jeder Iteration auf die Spalte “distance” zugreifen:
 
 ```python
-def main():
-  a = 5
-  b = 3
-  a = b
-  b = a
-
-  print(f"Swapped variables a: {a} b: {b}")
-
-if __name__ == "__main__":
-  main()
+total_distance = 0
+for i in range(len(df)):
+    total_distance += df.loc[i,'distance']
+print(total_distance)
 ```
 
-Das Programm funktioniert nicht wie erwartet, da zwar die Variable ```a```  zunächst den korrekten Wert ```3``` der Variable ```b``` erhält, danach aber die Variable ```b``` nicht den korrekten ursprünglichen Wert ```5``` von ```a``` erhält sondern den neuen Wert ```3``` aus der Variable ```b``` Die Ausgabe des Programms zeigt den Fehler:
+Das liefert uns das Ergebnis von 294 cm (= 58 + 144 + 92). 
 
-```shell
-$ python3 swap_buggy.py 
-Swapped variables a: 3 b: 3
-```
-
-Das folgende Beispiel ```swap.py``` zeigt das korrekte Tauschen von zwei Werten einer Liste. Das Problem des Überschreibens einer der beiden Variablen wird mit einer Hilsvariable ```temp``` gelöst. Diese speichert den Wert zwischen und kann dann später wieder ausgelesen werden.
+Dieser Ansatz mit der Schleife ist in der Praxis aber absolut nicht zu empfehlen! Man soll eigentlich nicht über die eizelnen Elemente in einem Pandas Dataframe iterieren. Das ist ineffizient, macht viel Schreibarbeit und es schleichen sich leicht Fehler dabei ein. Die folgende Codezeile macht genau das gleiche, ist aber deutlich eleganter:
 
 ```python
-def main():
-  a = 5
-  b = 3
-  temp = a
-  a = b
-  b = temp
-  print(f"Swapped variables a: {a} b: {b}")
-
-if __name__ == "__main__":
-  main()
+print(df["strecke"].sum())
 ```
 
-Auch in einer Liste lassen sich Elemente mit einer Hilfsvariable vertauschen (```swap_list.py```):
+Das liest sich doch auch viel besser: Berechne von der Spalte “strecke” die Summe und gib sie aus!
+
+`df["strecke"]` liefert eine Liste zurück mit allen Werten in der Spalte “strecke”, also so etwas wie ein Vektor. Und darauf lässt sich einfach die Methode `sum()` aufrufen und schon haben wir die Summe aller in der Spalte befindlichen Zahlen.
+
+
+## Funktionsweise von Data Science
+
+Das war jetzt ein extrem simples Beispiel und man könnte sich streiten, ob man das überhaupt schon Data Science nennen kann. Aber genau so funktionieren auch komplexere Anwendungen: Daten werden von irgendwo geladen - evtl. sogar aus mehreren Quellen - und dann werden Analysen damit gemacht. Oft besteht eine Data-Science-Anwendung aus den folgenden Schritten:
+
+- **Problembeschreibung**: Was soll berechnet werden und warum? Welchen Mehrwert bieten uns später einmal die Ergebnisse?
+- **Datenbeschaffung**: Wie kommen wir an die Daten? Welche Daten helfen uns?
+- **Data Cleaning**: Die meiste Arbeit verbringen Data-Scientists damit, die Daten zu säubern, das heißt, in ein Format zu bringen, mit dem man gut damit arbeiten kann. In diesem Schritt werden unsinnige und doppelte Datensätze entfernt und Transformationen durchgeführt, z. B. Zahlenwerte von inch in cm umgewandelt.
+- **Datenanalyse**: Wie in unserem Fall kann eine Berechnung auf den Daten ausgeführt werden. Es kommt aber häufig auch Machine-Learning zum Einsatz. Darunter sind Methoden der künstlichen Intelligenz gemeint, die zunächst in einem Lernprozess ein statistisches Modell trainieren und mithilfe dieses Modells Vorhersagen oder Entscheidungen treffen können. Denkbar sind in diesem Schritt auch Visualisierungen, also visuelle Darstellungen der Daten oder der Berechnungsergebnisse mit Hilfe von Diagrammen und anderen Grafiken.
+- **Optimierung**: Sind wir mit dem Ergebnis zufrieden? Macht das Machine-Learning noch Fehler? Dieser Schritt besteht daraus, zu evaluieren, wie gut unser Modell performt, und Möglichkeiten zu finden, um das Ganze noch weiter zu verbessern.
+
+
+# #2 Datenbanken
+
+Das Vorgehen, eine Datei mit Python einzulesen und mittels eines Python-Programms zu analysieren, eignet sich für kleine bis mittelgroße Datenmengen und vor allem nur dann, wenn man als einziger auf die Daten zugreift. Spätestens dann, wenn viele Benutzer gleichzeitig auf Daten zugreifen, kommen Datenbanken ins Spiel.
+
+Eine Datenbank speichert Daten, auf die wir über eine Schnittstelle zugreifen können. Wir lernen in dieser Challenge die Datenbanksprache SQL kennen. SQL bietet Kommandos wie INSERT, UPDATE, DELETE und SELECT, um Daten in die Datenbank einzufügen, zu ändern, zu löschen und abzufragen. SQL ist die standardisierte Abfragesprache für alle gängigen relationalen Datenbankmanagementsysteme.
+
+Wenn man sich zum Beispiel einen Webshop anschaut, führt jeder Klick eine oder sogar mehrere Datenbankanfragen aus: Beim Stöbern im Produktkatalog werden Bezeichnungen und Preise von Artikeln aus der Datenbank geladen und wenn ich ein Produkt bewerte, wird ebendiese Bewertung in die Datenbank eingefügt.
+
+## Relationale Datenbanken
+
+In einer relationalen Datenbank werden Daten in Tabellen gespeichert, man nennt sie auch Relationen. Ähnlich zu unserem CSV-Beispiel und den Pandas Dataframes besitzen Tabellen Spalten und Zeilen. Die Spalten legen wir beim Anlegen der Tabelle fest, und dabei bestimmen wir für jede Spalte, welchen Datentypen die Werte in dieser Spalte besitzen sollen, mehr dazu gleich.
+
+kundennummer | name    | email
+------------ | ------- | -------
+5            | Peter   | peter@example.com
+8            | Anna    | anna@example.com
+
+Eine relationale Datenbank (DB) wird verwaltet durch ein sogenanntes relationales Datenbankmanagementsystem (DBMS). Die populärsten DBMSs sind Oracle, MySQL, Microsoft SQL Server, PostgreSQL, IBM DB2 und SQLite. Vom Grundprinzip sind sie alle gleich: Sie bieten uns eine SQL-Schnittstelle zur Datenbank. Das erlaubt es uns, beliebige noch so komplexe Anfragen zu stellen und das DBMS kümmert sich darum, sich einen Plan zu machen, wie genau die Anfrage intern möglichst effizient ausgeführt werden soll. Meistens gibt es nämlich viele Ausführungsalternativen, aber darum müssen wir uns nicht kümmern. Wir als Benutzer beschreiben nur *was* wir haben möchten, das DBMS ermittelt dann, *wie* die Anfrage genau ausgeführt wird. Außerdem kümmert sich das DBMS darum, viele sogenannte Datenbank-Transaktionen gleichzeitig abzuwickeln. Es muss dabei nämlich immer aufpassen, dass sich die Transaktionen gegenseitig nicht stören, wenn viele Benutzer gleichzeitig auf die Daten zugreifen.
+
+Zwar gibt es auch andersartige Datenbanken, sogenannte NoSQL-Datenbanken, aber dennoch sind relationale Datenbanken und die dazugehörige Anfragesprache SQL meist die erste Wahl bei vielerlei Anwendungen. In einem Online-Shop lassen sich in einer Tabelle alle Produkte abspeichern, in einer anderen Tabelle alle Kunden und in einer dritten Tabelle Bewertungen, also welcher Kunde welches Produkt wie gut fand und was sie oder er dazu geschrieben hat. In einem sozialen Netzwerk haben wir eine Tabelle mit Nutzern, eine Tabelle mit Seiten und eine weitere mit Gruppen. Und auch hier muss wieder gespeichert werden, welcher Nutzer welcher Seite folgt oder Mitglied in welcher Gruppe ist. Um solche generelle konzeptionelle Fragen, was alles gespeichert werden soll und wie die einzelnen Dinge miteinander in Beziehung stehen, kümmert man sich in einer Modellierungsphase, für die in relationalen Datenbanken in der Regel ER-Diagramme zum Einsatz kommen.
+
+
+# #3 ER-Modellierung
+
+ER steht für Entity, Relationship. Eine Entität ist ein “Etwas”, also zum Beispiel der Kunde Peter oder das Produkt Schokoriegel. In einem ER-Diagramm beschreiben wir, welche Entitätstypen es gibt und wie diese in Beziehung zueinander stehen. Beispiel: Es gibt Kunden und Produkte - das sind Entitätstypen - und es gibt die Beziehung “Kunde bewertet Produkt”.
+
+![](img/01.png)
+
+In einem ER-Diagramm sind Entitätstypen als Kästchen dargestellt und Beziehungen als Rauten. Ein weiteres wichtige Konzept in ER-Diagrammen sind Attribute. Sowohl Entitätstypen als auch Beziehungen können Attribute besitzen. Die Attribute eines Entitätstyps beschreiben die Eigenschaften, die jede Entität dieses Typs besitzt. Zum Beispiel hat jeder Kunde / jede Kundin eine Kundennummer, eine E-Mail-Adresse und einen Namen:
+
+![](img/02.png)
+
+Durch das Unterstreichen eines Attributs oder ach mehrerer Attribute kennzeichnen wir den sogenannten Primärschlüssel eines Entitätstyps. Der Primärschlüssel dient zur eindeutigen Identifizierung der einzelnen Entitäten. Dadurch dass in unserem Beispiel die Kundennummer der Primärschlüssel ist, darf es keine zwei Kunden mit der gleichen Kundennummer geben. Die Kundennummer identifiziert einen Kunden nun eindeutig. Es darf aber zwei Kunden geben, die gleich heißen. Wenn zwei Kunden Ute heißen, ist das völlig okay, vorausgesetzt sie haben unterschiedliche Kundennummern. Im folgenden Beispiel sind nun Vorname und Nachname unterstrichen, sie bilden einen sogenannten kombinierten Primärschlüssel:
+
+![](img/03.png)
+
+Nun darf es immer noch zwei Kunden geben, die Ute heißen. Es darf auch zwei Kunden geben, die den Nachnamen Müller haben, aber es darf nur eine Ute Müller geben. Die Kombination aus beiden Attributen muss eindeutig sein. Der Einfachheit halber gehen wir aber wieder zurück zu dem Beispiel mit der Kundennummer. Laufende Nummern sind meistens eine gute Wahl, wenn es um den Primärschlüssel geht. 
+
+Ein Produkt hat eine Produktnummer, eine Bezeichnung und ein Preis. Die Produktnummer ist der Primärschlüssel:
+
+![](img/04.png)
+
+Eine Beziehung kann nun eingesetzt werden, um zu beschreiben, dass Kunden Produkte bewerten können. Auf die Linien zwischen der Beziehung und den dazugehörigen Entitätstypen wird der sogenannte Bezeihungstyp angegeben. Es gibt die Beziehungstypen 1:1, 1:N, N:1 und N:M. Ein Kunde kann viele Produkte bewerten und ein Produkt kann von vielen Kunden bewertet werden. Wir haben hier also eine N:M-Beziehung:
+
+![](img/05.png)
+
+Wie vorhin erwähnt, können nicht nur Entitätstypen, sondern auch Beziehungen Attribute haben. Bei N:M-Beziehungen ist das besonders sinnvoll. In unserem Beispiel von gerade könnten wir einfach nur speichern, dass Peter den Schokoriegel bewertet hat. Mit Hilfe von Beziehungsattributen lässt sich nun noch spezifizieren, wie gut er den Schokoriegel fand und was er dazu für einen Text verfasst hat:
+
+![](img/06.png)
+
+Das folgende ER-Diagramm zeigt, dass Produkte von einem Hersteller sind. Jedes Produkt ist nur von einem einzigen Hersteller, aber von einem Hersteller kann es beliebig viele Produkte geben. Der Schokoriegel ist vom Hersteller Monsterfood. Und die Firma Monsterfood kann neben dem Schokoriegel auch noch viele weitere Produkte herstellen.
+
+![](img/07.png)
+
+Es darf auch Produkte geben, die keinen Hersteller haben. Und es darf Hersteller geben, die gar keine Produkte anbieten. So etwas ist immer möglich und lässt sich in unserem ER-Diagramm nicht verhindern. 1 steht nämlich für 0-oder-1, ein Produkt ist also von keinem oder einem Hersteller. Und N steht für 0-bis-beliebig-viel. Ein Hersteller stellt kein Produkt her, eines, zwei, siebzehn, beliebig viele.
+
+
+# #4 Datenbankmanagementsysteme
+
+Datenbankmanagementsysteme laufen auf einem sogenannten Datenbank-Server. Dieser kann bei einem Unternehmen im Keller stellen, in einem Rechenzentrum oder in der Cloud. Die Cloud ist im Prinzip auch nur ein Rechenzentrum, bei dem sich Unternehmen Server flexibel mieten können. Wenn bei einem Online-Shop das Weihnachtsgeschät ansteht, können in wenigen Sekunden oder Minuten weitere Server bestellt, automatisch eingerichtet und gestartet werden. Und wenn nach Weihnachten die Auslastung wieder nachlässt, können die zusätzlich angemieteten Ressourcen wieder freigegeben werden. In einem eigenen Rechenzentrum müsste man diese Server erst einmal besitzen, mit Hardware bestücken und anschließen. In der Cloud bezahlt man einfach je nach Nutzung.
+
+Die folgende Abbildung zeigt, wie fast jede Web-Anwendung funktioniert, egal ob Online Shop, Banking-Software, ein soziales Netzwerk oder was auch immer: 
+
+![](img/08.png)
+
+Der Endbenutzer (Client) ruft eine Webseite auf den Webserver ab, meistens indem er oder sie im Browser eine Adresse eingibt. Der Webserver ruft daraufhin aus einer Datenbank alle Daten ab, die auf der Seite angezeigt werden sollen und schickt die Seite zurück an den Client, sodass dieser sie betrachten kann.
+
+Die Datenbankmanagementsysteme Oracle, MySQL, PostgreSQL und so weiter laufen alle als sogenannter Server-Prozess. Ein solcher Prozess läuft einfach durchgehend und wartet auf Anfragen. Kommt eine SQL-Anfrage rein, wird diese bearbeitet und mit einem Ergebnis beantwortet.
+
+
+## SQLite
+
+Wir verwenden der Einfachheit halber das Datenbankmanagementsystem SQLite. SQLite läuft nicht als Serverprozess. Stattdessen bietet es uns einfach nur eine SQL-Schnittstelle zu einer Datei auf unserer Festplatte. Anders als die CSV-Datei vom Data-Science-Beispiel lässt sicht  diese Datei aber nicht einfach in einem Texteditor öffnen. Will man mit der Datenbank arbeiten, verwendet man SQLite. Und jedes SQL-Kommando, was man dann stellt, wird intern verarbeitet, ausgeführt und liefert uns schließlich ein Ergebnis zurück.
+
+Auf der Linux-Shell (nicht in der Python-Konsole!) können wir eine neue Datenbank anlegen:
 
 ```python
-def main():
-  scores = [73, 72, 33]
-  
-  temp = scores[0]
-  scores[0] = scores[2]
-  scores[2] = temp
-
-  print(f"Swappeds list elements: {scores}")
-
-if __name__ == "__main__":
-  main()
+> touch webshop.db
+> sqlite3 webshop.db
 ```
 
-Die Ausgabe des Programms zeigt die korrekt vertauschten Werte der Liste an den Positionen ```0``` und ```2```:
+Das Linux-Kommando `touch` legt eine neue Datei `webshop.db` an. Anschließend können wir diese mit der SQLite-Shell öffnen. Und in dieser Shell können wir SQL-Kommandos eingeben. Wichtig ist, dass wir in der SQLite-Shell jede SQL-Anfrage am Ende mit einem Semikolon `;` abschließen.
 
-```shell
-$ python3 swap.py 
-Swappeds list elements: [33, 72, 73]
+*Tipp: Bisher haben Sie bei Replit in der "Console" gearbeitet. Drücken Sie auf das "+" daneben und tippen Sie "Shell" ein, um ein weiteres Tab zu öffnen. Navigieren Sie in den entsprechenden Ordner des Labs und geben Sie den oben stehenden Befehl "sqlite3 datenbank.db" ein, um anschließend SQL-Kommandos eingeben und ausführen zu können.*
+
+
+# #5 CREATE TABLE
+
+Mit dem SQL-Kommando `CREATE TABLE` lassen sich neue Tabellen anlegen. Danach können wir darin Daten einfügen, ändern, löschen und abfragen.
+
+```sql
+CREATE TABLE kunden(kundennummer INT PRIMARY KEY,
+                    name VARCHAR(100),
+                    email VARCHAR(500));  
 ```
 
-Das Beispiel ```score2.py``` zeigt wie sich Listen verlängern lassen:
+Jede Tabelle besitzt einen eindeutigen Namen (hier: `kunden`). In Klammern werden im `CREATE TABLE`-Kommando die Spaltennamen der Tabelle aufgezählt, jeweils mit ihren Datentypen und eventuellen Spaltenoptionen. Als Datentyp für die `kundennummer`-Spalte wurde `INT` gewählt, das sind ganze Zahlen. Die `name`- und `email`-Spalten sind jeweils Strings mit einer maximalen Länge von 100 bzw. 500 Zeichen, in SQL nennt man diesen Typen `VARCHAR`, also eine Zeichenkette variabler Länge. Die `kundennummer`-Spalte bekommt zusätzlich die Spaltenoption `PRIMARY KEY`. Diese Spalte ist also der Primärschlüssel. Eine Kundennummer identifiziert einen Kunden / eine Kundin eindeutig.
 
-~~~python
-from cs50 import get_int
+Die wichtigsten Datentypen in SQL sind:
 
-def main():
-  scores = []
+- `INT` - Ganze Zahlen, negativ und positiv, z. B. 8, 0, -3, 2319
+- `DECIMAL(p,q)` - Kommazahlen mit maximal q Stellen, davon q nach dem Komma, z. B. `DECIMAL(9,2)`: 29.95, -5.00, 1234567.89
+- `DOUBLE` - Kommazahlen ohne feste Anzahl von Nachkommastellen. Aufgrund der internen Speicherung können hier Rundungsfehler entstehen.
+- `DATE` - Ein Datum, welches aus Jahr, Monat und Tag besteht, z. B. ‘2022-11-30’
+- `TIMESTAMP` - Ein Zeitstempel, bestehend aus Datum und Uhrzeit, z. B. ‘2022-11-30 18:30:05.123’
+- `CHAR(l)` -  Eine Zeichenkette fester Länge l. Wird ein zu kurzer Wert eingefügt, wird mit Leerzeichen aufgefüllt, z. B. `CHAR(5)`: ‘Hallo’, ‘Hi   ‘
+- `VARCHAR(l)` - Eine Zeichenkette mit maximal l Zeichen, z. B. `VARCHAR(5)`: ‘Hallo’, ‘Hi’
 
-  score1 = get_int("Score: ")
-  score2 = get_int("Score: ")
-  score3 = get_int("Score: ")
 
-  scores.append(score1)
-  scores.append(score2)
-  scores.append(score3)
-  
-  average = (scores[0] + scores[1] + scores[2]) / 3
-  print(f"Durchschnitt: {average}")
+## Fremdschlüssel
 
-if __name__ == "__main__":
-  main()
-~~~
+ Die folgenden beiden `CREATE TABLE`-Statements beschreiben die Struktur der Tabellen `hersteller` und `produkte`:
 
-Das Programm liest zunächst drei Werte ein und speichert diese in den Variablen ```score1```, ```score2```, und ```score3```. 
+```sql
+CREATE TABLE hersteller (firma VARCHAR(50) PRIMARY KEY,
+                         land VARCHAR(100));
 
-Die Liste ```scores``` ist in Python ein **Objekt**. Objekte sind Variablen die einerseits mehr als einen Wert speichern können (die Liste speichert beispielsweise mehrere Werte) die andererseits auch Funktionen bieten, die nur zu diesen Variablen gehören. Eine solche Funktion ist ```append```, die als Parameter ein neues Element erwartet, das der Liste ```scores``` hinzugefügt werden soll. Funktionen die zu Objekten gehören müssen im Code per Punkt getrennt direkt hinter dem Objektnamen stehen (hier: ```scores0.append(score1)```).
+CREATE TABLE products (produktnummer INT PRIMARY KEY,
+                       beschreibung VARCHAR(100),
+                       preis DECIMAL(9,2),
+                       hersteller VARCHAR(50) REFERENCES hersteller(firma));
+```
 
-Die Funktion ```append``` fügt der Liste ein neues Element hinzu und verlängert diese um jeweils dieses neue Element.
+Die Spalte `hersteller` in der Tabelle `produkte` ist ein sogenannter Fremdschlüssel. Fremdschlüsselspalten referenzieren andere Spalten, in unserem Fall die Spalte `firma` in der Tabelle `hersteller`. Das bedeutet nun, dass in der Spalte `produkte.hersteller` nur Werte stehen dürfen, die es auch wirklich in der Spalte `hersteller.firma` gibt. Gibt es keinen Hersteller mit Firmennamen Calgonte, darf ich auch bei keinem Produkt den Hersteller Calgonte eintragen.
 
-Das Design des obigen Programms ist suboptimal, da wieder für jeden neuen Wert eine neue Variable angelegt werden muss. Das Programm lässt sich wie folgt umschreiben (```score3.py```):
+Folgende Daten könnte man nun in unseren Tabellen speichern:
 
-~~~python
-from cs50 import get_int
+manufacturers
+firma        | land
+------------ | -------
+Monsterfood  | USA
+Holzkopf     | Österreich
 
-NUM_SCORES = 3
+produkte
+produktnummer | beschreibung    | preis | hersteller
+------------- | --------------- | ----- | -----------
+17            | Schokoriegel    | 0.89  | Monsterfood
+18            | Müsliriegel     | 0.99  | Monsterfood
+88            | Katzenfutter    | 4.99  | *NULL*
 
-def main():
-  scores = []
-  for i in range(NUM_SCORES):
-    score = get_int("Score: ")
-    scores.append(score)      
 
-  average = (scores[0] + scores[1] + scores[2]) / NUM_SCORES
-  print(f"Durchschnitt: {average}")
+Es gilt:
 
-main()
-~~~
+- Es gibt Hersteller, die keine Produkte herstellen: Holzkopf taucht nie in der Produkttabelle auf
+- Es gibt Produkte ohne Hersteller: Wert `NULL` (`NULL`-Werte sind immer erlaubt, außer in Primärschlüsselspalten oder man vergibt einer Spalte die Option `NOT NULL`)
+- Jeder Wert in der `hersteller`-Spalte der Tabelle `produkte`, der nicht `NULL` ist, existiert auch wirklich in der Spalte `firma` der Tabelle `hersteller`. Ein Produkt mit dem Hersteller Calgonte wäre ungültig, weil dieser Wert nicht in der `hersteller`-Tabelle in der Spalte `firma` vorkommt.
+- Jeden Firmennamen gibt es in der Tabelle `hersteller` nur einmal (Primärschlüssel)
+- Jede Produktnummer gibt es in der Tabelle `produkte` nur einmal (Primärschlüssel)
 
-Zu Beginn wird eine Konstante ```NUM_SCORES``` definiert, in der die Anzahl der Werte, die das Programm einlesen und in der Liste speichern soll abgelegt wird. Anschließend werden die Nutzer mit ```for i in range(NUM_SCORES):``` diesem Wert entsprechend oft (hier: 3) aufgefordert eine neue Zahl einzugeben, und diese Zahl wird der Liste ```scores``` hinzugefügt. Zur Berechnung des Durchschnitts wird ```NUM_SCORES``` dann erneut verwendet.
 
-Das Design ist bei der Berechnung des Durchschnitts auf jedes Element der Liste einzelnn zugegriffen werden muss. Verändert sich der Wert von ```NUM_SCORES```, dann mus auch die Berechnung des Durchschnitts angepasst werden. 
+# #6 INSERT
 
-Python bietet zur Lösung dieses Problems die Funktionen ```sum()``` und ```len()``` an (```score4.py```):
+Mit dem `INSERT`-Kommando lässt sich eine neue Zeile in eine Tabelle einfügen:
 
-~~~python
-from cs50 import get_int
+```sql
+INSERT INTO hersteller (firma, land) VALUES ('Calgonte', 'Italien');
+```
 
-NUM_SCORES = 3
+Links vom Stichwort `VALUES` stehen in Klammern die Spaltennamen, rechts davon ebenfalls in Klammern die entsprechenden einzufügenden Werte. Wichtig ist, dass String-Werte immer in einfachen Anführungszeichen stehen müssen! Würde man links vom Stichwort `VALUES` eine  Spalte weglassen, erhält diese einen Standardwert (in der Regel `NULL`). Lässt man alle Spaltennamen weg, muss man hinter dem Stichwort `VALUES` die Werte aller Spalten in der richtigen Reihenfolge setzen:
 
-def main():
-  scores = []
-  for i in range(NUM_SCORES):
-    score = get_int("Score: ")
-    scores.append(score)      
+```sql
+INSERT INTO hersteller VALUES ('Calgonte', 'Italien');  -- macht das gleiche wie oben
+```
 
-  average = sum(scores) / len(scores)
-  print(f"Durchschnitt: {average}")
+Mit `--` werden in SQL übrigens Kommentare eingeleitet.
 
-if __name__ == "__main__":
-  main()
-~~~
+## UPDATE
 
-```sum()``` berechnet die Summe aller Elemente der Liste, und ```len()``` zählt die Elemente der Liste. Das Design des Programms ist jetzt besser, da lediglich der Wert von ```NUM_SCORES``` an einer Stelle geändert werden muss und das Einlesen der Werte und die Berechnung passen sich automatisch an.
+Ein `UPDATE`-Befehl wird verwendet, um Zeilen, die sich in einer Tabelle befinden, zu modifizieren:
 
-Suchen in einer Liste. Das folgende Beispiel erstellt eine Liste von Wörtern, fragt die Nutzer nach dem Wort und gibt anschließend aus, ob das Wort in der Liste enthalten ist oder nicht (```names.py```):
+```sql
+UPDATE hersteller SET land = 'Deutschland' WHERE firma = 'Holzkopf';
+```
 
-~~~shell
-from cs50 import get_string
+Im `SET`-Teil wird spezifiziert, inwiefern etwas geändert werden soll. Hier soll der Wert in der Spalte `land` auf `'Deutschland'` gesetzt werden. Und im `WHERE`-Teil gibt man an, welche Zeilen geändert werden sollen. In unserem Fall diejenigen Zeilen, bei denen in der `firma`-Spalte `'Monsterfood'` steht. Da `firma` der Primärschlüssel ist, kann es höchstens eine Zeile geben, bei der das der Fall ist. Würde man den `WHERE`-Teil komplett weglassen, werden alle Zeilen geändert:
 
-NAMES = ["Alex", "Bruce", "Charles"]
+```sql
+UPDATE produkte SET preis = preis + 1; -- macht jedes Produkt 1 Euro teuerer
+```
 
-def main():
-  name = get_string("Enter name: ")
-  if name in NAMES:
-    print("Korrekter Name!")
-  else:
-    print("Diesen Namen kenne ich nicht!")
+## DELETE
 
-if __name__ == "__main__":
-  main()
-~~~
+Auch im `DELETE`-Kommando gibt es einen `WHERE`-Teil. In diesem legen wir fest, welche Zeilen wir löschen wollen. Und auch hier gilt wieder: Wird die `WHERE`-Klausel weggelassen, löschen wir alle Zeilen, die sich aktuell in der Tabelle befinden.
 
-Der Code ```if name in NAMES``` sucht den Namen im Dictionary und gibt ```True``` zurück, wenn der Name enthalten ist und ```False``` wenn nicht. 
+```sql
+DELETE FROM produkte WHERE produktnummer = 88; -- löscht das Katzenfutter
+DELETE FROM produkte; -- löscht alle Produkte
+```
 
-# Dictionaries
 
-In Listen lassen sich Daten abspeichern und anhand der Position abrufen. Manchmal möchte man aber Daten (= **Werte**) nicht anhand einer Position sondern anhand einer bestimmten Zeichenkombination (= **Key**) abfragen. Ein Beispiel dafür ist ein Telefonbuch: Der Key entspricht dem Namen nach dem man sucht und der Wert ist die Telefonnumer. Python bietet dazu eine besondere Liste, das **Dictionary**.
+# #7 SELECT
 
-Das folgende Beispiel zeigt eine Implementierung eines Telefonbuchs mithilfe eines Dictionaries in Python (```phonebook0.py```):
+Das wichtigste und mächtigste Kommando in SQL ist das `SELECT`-Kommando. Anders als `INSERT`, `UPDATE` und `DELETE` ändert es den Zustand der Datenbank nicht. Stattdessen liefert es uns ein Anfrageergebnis zurück:
 
-~~~python
-# Implements a phone book
+```sql
+SELECT * FROM produkte;  -- * steht für: alle Spalten werden ausgegeben
+SELECT bezeichnung, preis FROM produkte;
+SELECT * FROM produkte WHERE preis > 1;
+SELECT * FROM produkte WHERE hersteller = 'Monsterfood';
+SELECT * FROM produkte WHERE hersteller = 'Monsterfood' AND preis < 0.8;
+```
 
-from cs50 import get_string
+Die drei hier verwendeten Klauseln einer `SELECT`-Anfrage sind:
 
-phonebook = {
-    "Polizei": 110,
-    "Feuerwehr": 112
-}
+- `SELECT` - Welche Spalten sollen ausgegeben werden? `*` steht für: alle Spalten
+- `FROM` - Aus welcher Tabelle / welchen Tabellen werden die Daten gelesen?
+- `WHERE` - Nur Zeilen, die das angegebene Prädikat erfüllen, werden ausgegeben. Lässt man das `WHERE`-Prädikat weg, werden alle Zeilen ausgegeben.
 
-def main():
-  # Search for name
-  name = get_string("Name: ")
-  if name in phonebook:
-      print(f"Number: {phonebook[name]}")
-    
-if __name__ == "__main__":
-  main()
-~~~
+Wichtig ist immer, die Datentypen im Auge zu behalten: String-Werte (`CHAR`, `VARCHAR`) müssen in Anführungszeichen stehen, Zahlen (`INT`, `DECIMAL`, `DOUBLE`) schreibt man nicht in Anführungszeichen. Spaltennamen stehen ebenfalls nicht in Anführungszeichen. In Python gilt ja für Variablennamen, Zahlen und Strings das gleiche.
 
-Werte lassen sich über die Keys auch direkt aus dem Dictionary mit ```phonebook.get("Polizei")``` abfragen. Als Ergebnis erhält man den unter dem Key gespeicherten Wert (hier: ```110```).
+In SQL lassen sich Prädikate - also Überprüfungen, die im `WHERE`-Teil stehen - mit `AND` und `OR` verknüpfen. Die letzte Anfrage im obigen Beispiel liefert alle Produkte vom Hersteller Monsterfood, die weniger als 80ct kosten. Wegen der `AND`-Verknüpfung müssen beide Bedingungen erfüllt sein, damit eine Zeile ausgegeben wird.
 
-Fragt man Werte für Keys aus dem Dictionary an, die dort nicht existieren, gibt die Funktion ```get``` den Wert ```None```zurück (```phonebook1.py```):
+## Joins
 
-~~~python
-from cs50 import get_string
+Ein Join in SQL verbindet zwei Tabellen miteinander. Das wird immer dann benötigt, wenn Tabellen über Fremdschlüssel miteinander verknüpft sind. Im `FROM`-Teil einer `SELECT`-Anfrage schreibt man `linke_tabelle JOIN rechte_tabelle ON`  und dann ein sogenanntes Join-Prädikat. Dieses Prädikat hat die Aufgabe, zu den Zeilen der linken Tabelle die passenden Join-Partner in der rechten Tabelle zu suchen:
 
-phonebook = {
-    "Polizei": 110,
-    "Feuerwehr": 112
-}
+```sql
+SELECT p.bezeicnung, p.hersteller, h.land
+FROM produkte p JOIN hersteller h ON p.hersteller = h.firma;
+```
 
-def main():
-  police_number = phonebook.get("Polizei")
-  print(f"Polizei: {police_number}")
+Zur besseren Lesbarkeit haben wir Tabellenaliase `p` und `h` eingeführt. Man schreibt sie einfach hinter einen Tabellennamen und kann dann immer `p` bzw. `h` schreiben und muss nicht immer `produkte` und `hersteller` voll ausschreiben.
 
-  invalid_key = phonebook.get("Notruf")
-  print(f"Invalid Key: {invalid_key}")
-    
-if __name__ == "__main__":
-  main()
-~~~
+In der `SELECT`-Klausel schreiben wir nun vor die Spaltennamen den jeweiligen Tabellenalias, also z. B. `p.bezeichnung`, damit klar ist, aus welcher Tabelle die Spalte stammt.
 
-Die Ausgabe des Programms ist wie folgt:
+Und im `FROM`-Teil wird der eigentliche Join vorgenommen. Jedes Produkt aus der Produkt-Tabelle findet seinen Hersteller in der Hersteller-Tabelle immer dann, wenn für ein Produkt `p` und ein Hersteller `h` gilt: `p.hersteller = h.firma`. Das ist zum Beispiel für das Produkt Schokoriegel und für den Hersteller Monsterfood der Fall. Und dieses Vorgehen wird für jedes Produkt gemacht. Wir suchen den entsprechenden Hersteller des Produkts in der Hersteller-Tabelle. 
 
-~~~shell
-$ python phonebook1.py 
-Polizei: 110
-Invaild Key: None
-~~~
+Das Ergebnis der Anfrage sieht wie folgt aus:
+bezeichnung   | hersteller    | land 
+------------- | ------------- | ----- 
+Schokoriegel  | Monsterfood   | USA
+Müsliriegel   | Monsterfood   | USA
 
-# Strings
+Das Produkt Katzenfutter hat keinen Join-Partner gefunden, weil sein Hersteller NULL ist. Daher taucht es im Ergebnis nicht auf.
 
-String sind in Python Sequenzen aus einzelnen Buchstaben. Das folgende Programm ermittelt die Länge eines Strings (```string0.py```):
+# #8 Datenbankabfragen mit Python
 
-~~~python
-from cs50 import get_string
+Bisher haben wir SQL-Anfragen auf der Kommandozeile eingegeben. In der Realität werden jedoch die meisten SQL-Anfragen von Anwendungen heraus an die Datenbank gestellt. Und das machen wir nun. Wir entwickeln ein Python-Programm, was auf unsere kleine SQLite-Datenbank zugreift. In dem Programm möchte ich neue Kunden eintragen können und eine Liste aller Kunden sehen.
 
-def main():
-  name = get_string("Name eingeben: ")
-  length = len(name)
-  print(f"Länge: {length}")
+In der SQLite-Shell fügen wir zum Testen zwei Kunden ein:
 
-main()
-~~~
+```sql
+INSERT INTO kunden (kundennummer, name, email) VALUES (5, 'Peter', 'peter@example.com');
+INSERT INTO kunden (kundennummer, name, email) VALUES (8, 'Anna', 'anna@example.com');
+SELECT * FROM kunden;  -- zeigt die beiden Kunden an
+```
 
-Der folgende Code geht einen String Zeichen für Zeichen durch und gibt jeden Buchstaben als Großbuchstaben aus (```string1.py```):
+Um in einer Programmiersprache mit einer Datenbank zu interagieren, sind die folgenden Schritte nötig:
 
-~~~python
-from cs50 import get_string
+1. Der Treiber zum jeweiligen DBMS wird benötigt.
+2. Eine Verbindung zur Datenbank wird aufgebaut.
+3. Eine Anfrage wird an die Datenbank gesendet. 
+4. Handelt es sich bei der Anfrage um eine `SELECT`-Anfrage, kommt ein sogenanntes Result-Set zurück, über welches man iterieren kann, um an die Ergebniszeilen zu gelangen.
 
-def main():
-  before = get_string("Before:  ")
-  print("After:  ", end="")
-  for c in before:
-      print(c.upper(), end="")
-  print()
+Bei SQLite sind die ersten beiden Schritte sehr simple. Während bei anderen Datenbanken oft manuelle Treiberinstallationen vonnöten sind und aufgrund der Server-Architektur Verbindungsdaten, Ports, Benutzernamen und Passwort übermittelt werden müssen, kann man in Python einfach das Paket `sqlite3` importieren und mit der Funktion `connect` die Datenbank öffnen:
 
-if __name__ == "__main__":
-  main()
-~~~
+```python
+import sqlite3
+conn = sqlite3.connect('webshop.db')
 
-Zuerst wird ein String in der Variable ```before``` eingelesen. Anschließend wird am Beginn einer neuen Zeile *After:* ausgegeben, jedoch ohne eine neue Zeile zu beginnen (vgl. ```print("After:  ", end="")```).
+print("Alle Kunden:")
 
-Die Schleife ```for c in before:``` geht jedes Zeichen des Strings einzeln durch, d.h. der Wert von ```c``` nimmt in innerhalb der Schleife jeweils einen anderen Buchstaben des Strings an. Die Funktion ```upper()``` wird durch das Objekt String in Python bereitgestellt und gibt den Buchstaben als Großbuchstabe zurück.
+rs = conn.execute("SELECT kundennummer, name FROM kunden;")
+for row in rs:
+   print(f"{row[0]}: {row[1]}")
 
-Achtung: ```upper()``` wandelt die Zeichen des Strings nicht um, da Strings in Python **immutable**, d.h. unveränderlich sind. Die Ausgabe des Strings ist demnach im folgenden Beispiel unverändert (```string2.py```): 
+conn.close()
+```
 
-~~~python
-from cs50 import get_string
+Die Funktion `sqlite3.connect` liefert ein Connection-Objekt zurück, auf welchem sich nun die Anfragen stellen lassen. Im gezeigten Beispiel schicken wir mittels `conn.execute` eine `SELECT`-Anfrage an die Datenbank. Zurück kommt ein Result-Set, über welches wir mit einer `for`-Schleife iterieren können. In jeder Iteration haben wir Zugriff auf die einzelnen Spalten der jeweiligen Zeile. Da unsere Anfrage zwei Spalten zurückliefert (Kundennummer und Name), gibt uns `row[0]` die Kundennummer und `row[1}` den Namen der Kundin oder des Kunden zurück.
 
-def main():
-  before = get_string("Before:  ")
-  print("After:  ", end="")
-  for c in before:
-      print(c.upper(), end="")
-  print()
-  print(f"String: {before}")
+Das Kommando `conn.close()` schließt die Datenbankverbindung wieder. Dies ist notwendig, weil SQLite es nicht unterstützt, dass zwei Verbindungen gleichzeitig auf die gleiche Datenbank schreibend zugreifen.
 
-if __name__ == "__main__":
-  main()
-~~~
+Die Ausgabe sieht wie folgt aus:
 
-Ausgabe:
+```python
+Alle Kunden:
+5: Peter
+8: Anna
+```
 
-~~~shell
-$ python3 string2.py 
-Before:  hallo
-After:  HALLO
-String: hallo
-~~~
+## Parametrisierte Anfragen
 
-Der folgende Code wandelt einen String in Großbuchstaben um (```string3.py```):
+Mit unserem bisherigen Wissen können wir ein `INSERT` mittels Python wie folgt an die SQLite-Datenbank schicken:
 
-~~~python
-from cs50 import get_string
+```python
+conn.execute("INSERT INTO kunden (kundennummer, name) VALUES (9, 'Jürgen');")
+conn.commit()
+```
 
-def main():
-  before = get_string("Before:  ")
-  print(f"Before:  {before}")
-  after = before.upper()
-  print(f"After:  {after}")
+Durch den `commit`-Befehl werden die Änderungen, die innerhalb der Verbindung gemacht wurden, wirklich in die Datenbank festgeschrieben. Würde man ihn auslassen, ist es so, als ob das `INSERT` nie gemacht worden wäre.
 
-if __name__ == "__main__":
-  main()
-~~~
+Das gerade gezeigte Beispiel funktioniert nur ein einziges Mal. Danach tritt ein Fehler auf, weil es den Kunden mit der Kundennummer 9 bereits gibt. Erweitern wir das Programm also, sodass man auf der Konsole die Kundennummer und den Namen des neu einzufügenden Kunden frei wählen kann:
 
-Der ursprüngliche String ```before``` bleibt aber unverändert (Strings sind immutable): Python erzeugt einen neuen String ```after``` und kopiert dort die Zeichen als Großbuchstaben.
+```python
+import sqlite3
+conn = sqlite3.connect("webshop.db")
 
-Ausgabe:
+print("Neuen Kunden einfügen:")
+print("Soll kein neuer Kunde eingefügt werden, einfach Enter drücken.")
+customernumber = input("Kundennummer: ")
+if customernumber != "":
+	name = input("Name: ")
+	conn.execute("INSERT INTO kunden(kundennummer, name) VALUES (?, ?);", [customernumber, name])
+	print(f"{name} wurde eingefügt!")
+conn.commit()
+conn.close()
+```
 
-~~~shell
-$ python3 string3.py 
-Before:  hallo
-Before:  hallo
-After:  HALLO
-~~~
+Es fällt auf, dass im SQL-Kommando Fragezeichen verwendet wurden. Dies sind sogenannte Platzhalter. Man verwendet sie, wenn Teile einer Anfrage erst zur Laufzeit feststehen. Der SQLite-Treiber kümmert sich dann automatisch darum, Strings in Anführungszeichen zu setzen und spezielle Sonderzeichen zu ersetzen. Sollte beispielsweise im Namen eines Kunden ein `‘`  vorkommen, könnte die Anfrage ungültig werden oder sich gar Sicherheitslücken in der Anwendung eröffnen.
 
-Eine häufige Aufgabe ist es Strings in einzelne Wörter zu zerlegen (```string4.py```):
+Wir übergeben der Methode `conn.execute` nun zwei Parameter: Die auszuführende SQL-Anfrage und eine Liste mit denjenigen Werten, die anstelle der Platzhalter in die Anfrage kommen sollen. Da wir in der Anfrage zwei `?`-Platzhalter verwendet haben, muss die Liste aus zwei Elementen bestehen, der Kundennummer und dem Namen.
 
-~~~python
-from cs50 import get_string
+Gibt der Anwender oder die Anwenderin auf der Konsole die Kundennummer 11 ein und den Namen Ute, wird folgende Anfrage an die Datenbank geschickt: 
 
-def main():
-  sentence = get_string("Sentence to split:  ")
-  words = sentence.split()
+```sql
+INSERT INTO kunden(kundennummer, name) VALUES (11, 'Ute');
+```
 
-  for word in words:
-    print(f"Word: {word}")
+Die gesamte Anwendung sieht in dem Falle wie folgt aus:
 
-if __name__ == "__main__":
-  main()
-~~~
+```sql
+Alle Kunden:
+5: Peter
+8: Anna
+9: Jürgen
+Neuen Kunden einfügen:
+Soll kein neuer Kunde eingefügt werden, einfach Enter drücken.
+Kundennummer: 11
+Name: Ute
+Ute wurde eingefügt!
+```
 
-Die Ausgabe des Programms ist wie folgt:
-
-~~~shell
-$ python3 string4.py 
-Sentence to split:  Hello, it's me
-Word: Hello,
-Word: it's
-Word: me
-~~~
-
-Das folgende Programm (```string5.py```) zeigt, wie man das Vorkommen von Zeichen in einem String zählen kann:
-
-~~~python
-from cs50 import get_string
-
-def main():
-  sentence = get_string("Sentence:  ")
-  count = sentence.count("a")
-  print(count)
-
-if __name__ == "__main__":
-  main()
-~~~
-
-Ruft man das Programm auf, erhält man folgenden Ausgabe:
-
-~~~shell
-python string5.py 
-Sentence:  hallo
-1
-~~~
-
-```a``` kommt einmal im Wort hallo vor, wird hello eingebeben, ist die Ausgabe 0.
-
-# Konvertieren von Strings
-
-Eine häufiges Programmierproblem ist die Suche von Strings in einer Liste von Strings. Das folgende Beispiel liest eine Zeichenkette von der Kommandozeile ein und überprüft, ob diese in einer Liste von Zeichenketten enthalten ist. Um das Programm gegen Fehleingaben der Nutzer robuster zu machen, wird die eingegebene Zeichenkette mit ```s.lower()``` in Kleinbuchstaben umgewandelt. Hat ```s``` beispielsweise zuerst den Wert ```JA```, wird dieser in ```ja``` umgewandelt (```string6.py```).
-
-~~~python
-from cs50 import get_string
-
-def main():
-  s = get_string("Do you agree? ")
-
-  s = s.lower()
-  
-  if s in ["y", "yes"]:
-      print("Agreed.")
-  elif s in ["n", "no"]:
-      print("Not agreed.")
-
-if __name__ == "__main__":
-  main()
-~~~
-
-
-
-# Parameter von der Shell
-
-Python-Programmen lassen sich auch Variablen direkt von der Shell übergeben. Dazu wird in Python die Bibliothek ```sys```benötigt.
-
-Der folgende Code überprüft, ob beim Aufruf des Programms ein Parameter von der Shell übergeben wurde (```argv0.py```):
-
-~~~python
-# Prints a command-line argument
-
-from sys import argv
-
-def main():
-  if len(argv) == 2:
-      print(f"hello, {argv[1]}")
-  else:
-      print("hello, world")
-
-if __name__ == "__main__":
-  main()
-~~~
-
-Zuerst wird die Liste ```argv``` aus der Bibliothek ```sys``` importiert. Diese Liste enthält die Parameter die von der Kommandozeile an den Python Interpreter übergeben wurden. Der folgenden Aufruf...
-
-~~~shell
-$ python3 argv0.py Markus
-~~~
-
-führt zu folgenden Werten in ```argv```: ```argv[0]```entspricht dem Python-Skript (hier: ```argv.py```) und ```argv[1]``` dem ersten durch Leerzeichen abgetrennten String nach dem Skriptnamen (hier: ```Markus```).
-
-Die Ausgabe des Programms mit obigen Aufruf ist demnach wie folgt:
-
-~~~shell
-$ python3 argv0.py Markus
-hello, Markus
-~~~
-
-Programme lassen sich beenden, wenn eine bestimmte Bedingung eintrifft (```argv1.py```):
-
-~~~python
-# Prints a command-line argument
-
-from sys import argv, exit
-
-def main():
-  if len(argv) != 2:
-    print("Missing command-line argument")
-    exit(1)
-
-  print(f"hello, {argv[1]}")
-  exit(0)
-
-if __name__ == "__main__":
-  main()
-~~~
-
-Wird das Programm ohne Parameter auf der Shell ausgeführt, erhält man die folgende Fehlermeldung:
-
-~~~shell
-$ python3 argv1.py 
-Missing command-line argument
-~~~
-
-Erst mit einem Parameter beendet sich das Programm nicht und gibt den Parameter aus:
-
-~~~shell
-$ python3 argv1.py hello
-hello, hello
-~~~
-
-Die Parameter der Funktion exit signalisieren dabei einen Fehler (```1```) oder ein normales Ende des Programms (```0```).
-
-Das obige Programm lässt sich umschreiben, um klarer zu kennzeichnen aus welcher Bibliothek ```argv``` und ```exit()``` stammen (```argv2.py```):
-
-~~~python
-# Prints a command-line argument
-
-import sys
-
-def main():
-  if len(sys.argv) != 2:
-    print("Missing command-line argument")
-    sys.exit(1)
-
-  print(f"hello, {sys.argv[1]}")
-  sys.exit(0)
-
-if __name__ == "__main__":
-  main()
-~~~
-
-Das Voranstellen von ```sys.``` vor ```argv``` bzw. ```exit()``` kennzeichnen diese als zur Bibliothek ```sys``` zugehörig. 
-
-
-# Dokumentation
-Die offizielle [Python-Dokumentation](https://docs.python.org/3/) eräutert die in Python bereits vorhandenen Funktionen. Beispielsweise findet man dort alle Methoden zur Stringbearbeitung:  [https://docs.python.org/3/library/stdtypes.html#string-methods](https://docs.python.org/3/library/stdtypes.html#string-methods). Auf dieser Dokumentation findet sich auch eine Beschreibung, wie man Fließkommazahlen runden kann: [https://docs.python.org/3/library/functions.html?highlight=round#round](https://docs.python.org/3/library/functions.html?highlight=round#round)
-
-
-
-Basierend auf CS50 von David J. Malan (Harvard University, 2022).
-
-[Impressum Digital Skills](https://reader.tutors.dev/#/note/zusatzstudium-digital-skills-alle-semester.netlify.app/unit-4/note-1)
+In der SQLite-Shell und beim nächsten Ausführen der Anwendung sehen wir die neue Kundin Ute.
