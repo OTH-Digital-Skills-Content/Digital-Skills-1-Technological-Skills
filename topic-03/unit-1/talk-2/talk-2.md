@@ -6,6 +6,6 @@ icon:
   color: lightblue
 ---
 
-Cheat Sheet Challenge 2
+Cheat Sheet Challenge
 
 Cheat Sheet zu Scratch
