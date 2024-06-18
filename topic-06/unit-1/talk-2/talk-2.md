@@ -6,6 +6,6 @@ icon:
   color: lightblue
 ---
 
-Cheat Sheet Challenge 7
+Cheat Sheet Challenge
 
 Cheat Sheet zu Data Science und SQL

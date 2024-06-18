@@ -6,7 +6,7 @@ icon:
   color: orange
 ---
 
-Note Challenge 7
+Note Challenge
 
 Data Science und SQL
 

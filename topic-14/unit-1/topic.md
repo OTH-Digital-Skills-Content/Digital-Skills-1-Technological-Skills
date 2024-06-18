@@ -1,1 +1,1 @@
-Challenge 9 - Webentwicklung (optional)
+Challenge - Webentwicklung (optional)

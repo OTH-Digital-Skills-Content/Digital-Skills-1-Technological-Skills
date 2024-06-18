@@ -6,7 +6,7 @@ icon:
   color: orange
 ---
 
-Note Challenge 8 - Web
+Note Challenge - Web
 
 Internet, HTML, CSS, JavaScript
 
