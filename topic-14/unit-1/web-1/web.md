@@ -6,6 +6,6 @@ icon:
   color: darkred
 ---
 
-Code Challenge 9
+Code Challenge
 
 Sourcecode zu Webentwicklung

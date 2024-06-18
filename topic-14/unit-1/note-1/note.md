@@ -6,7 +6,7 @@ icon:
   color: orange
 ---
 
-Note Challenge 9 - Webentwicklung
+Note Challenge - Webentwicklung
 
 Webentwicklung
 
