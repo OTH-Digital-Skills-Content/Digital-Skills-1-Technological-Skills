@@ -7,6 +7,6 @@ icon:
 ---
 
 
-Cheat Sheet Challenge 5
+Cheat Sheet Challenge
 
 Cheat Sheet zu Python und Informatik 2

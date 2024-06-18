@@ -6,6 +6,6 @@ icon:
   color: darkred
 ---
 
-Code Challenge 5
+Code Challenge
 
 Sourcecode zu Python und Informatik 2

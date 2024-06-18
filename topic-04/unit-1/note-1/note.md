@@ -6,7 +6,7 @@ icon:
   color: orange
 ---
 
-Note Challenge 4
+Note Challenge
 
 Python und Informatik
 

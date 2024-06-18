@@ -6,14 +6,13 @@ icon:
   color: orange
 ---
 
-Note Challenge 10
+Note Challenge
 
 IoT
 
 [[toc]]
 
 
-Hier wird noch gearbeitet. In Kürze finden Sie hier die Note zu Challenge 10 IoT.
 
 # Internet of Things
 

@@ -6,7 +6,7 @@ icon:
   color: orange
 ---
 
-Note Challenge 5
+Note Challenge
 
 Debugging, Listen und Algorithmen
 
