@@ -1,1 +1,1 @@
-Lego-Roboter & Scratch
+Lego-Roboter und Scratch
