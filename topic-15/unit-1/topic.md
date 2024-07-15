@@ -1,1 +1,1 @@
-Challenge - Hardware-Ausleihe (optional)
+Hardware
