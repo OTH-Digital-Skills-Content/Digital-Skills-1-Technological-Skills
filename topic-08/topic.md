@@ -1,4 +1,4 @@
-# Challenge - IoT
+# Challenge - Automation
 
 
-Internet of Things, micro:bit, Workshop
+Automation

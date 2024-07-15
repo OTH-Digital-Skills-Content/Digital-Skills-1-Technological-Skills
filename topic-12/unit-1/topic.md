@@ -1,1 +1,1 @@
-Challenge - Applied Artificial Intelligence Basics
+Challenge - Review und Reflection

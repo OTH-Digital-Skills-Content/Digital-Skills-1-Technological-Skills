@@ -1,1 +1,1 @@
-Challenge - Automation
+Challenge - Applied Artificial Intelligence Basics

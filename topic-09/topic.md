@@ -1,4 +1,4 @@
-# Challenge - Automation
+# Challenge - Applied Artificial Intelligence Basics
 
 
-Automation
+Applied Artificial Intelligence Basics
