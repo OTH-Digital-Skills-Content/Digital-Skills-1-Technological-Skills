@@ -1,3 +1,3 @@
-# Challenge - Hardware (optional)
+# Optional: Challenge - Hardware
 
 Hardware (optional)

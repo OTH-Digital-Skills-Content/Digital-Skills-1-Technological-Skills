@@ -1,3 +1,3 @@
-# Challenge - Machine Learning (optional)
+# Optional: Challenge - Machine Learning
 
 Machine Learning (optional)

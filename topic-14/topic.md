@@ -1,4 +1,4 @@
-# Challenge - Webentwicklung (optional)
+# Optional: Challenge - Webentwicklung
 
 
 Python, Flask, SQLite
