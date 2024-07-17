@@ -1,1 +1,1 @@
-01 - Überblick über das Semester
+Überblick über das Semester
