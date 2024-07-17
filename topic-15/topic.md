@@ -1,3 +1,3 @@
-# Optional: Challenge - Hardware
+# Optional: Challenge - Robotik
 
-Hardware (optional)
+Robotik (optional)
