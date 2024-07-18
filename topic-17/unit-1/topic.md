@@ -1,1 +1,1 @@
-Challenge - IoT
+IoT
