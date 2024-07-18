@@ -1,3 +1,3 @@
 # Optional: Challenge - Robotik
 
-Robotik (optional)
+Lego-Roboter mit Scratch & Python (optional)
