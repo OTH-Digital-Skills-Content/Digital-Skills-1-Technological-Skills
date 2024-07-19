@@ -9,7 +9,7 @@ icon:
 # Wichtige Informationen
 
 
-Hinweise u. a. zum Präsenztreffen und zur Evaluierung
+Hinweise u. a. zum Präsenztreffen
 
 
 Alle Informationen zur Organisation und zum Ablauf des Semesters finden Sie im [ELO-Kursraum](https://elearning.oth-regensburg.de).
