@@ -1,3 +1,1 @@
-Data Science
-
-Video zu Data Science
+Video 3: Datenschutz: So kannst Du Dein Smartphone schützen?
