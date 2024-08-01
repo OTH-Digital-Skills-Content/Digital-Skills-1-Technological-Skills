@@ -1284,4 +1284,4 @@ Die Webapplikation verwendet HTML für die Darstellung, Python für den serverse
 
 Basierend auf CS50 von David J. Malan (Harvard University, 2022).
 
-[Impressum Digital Skills](https://reader.tutors.dev/#/note/zusatzstudium-digital-skills-alle-semester.netlify.app/unit-4/note-1)
+[Impressum Digital Skills](https://tutors.dev/course/technological-skills)
