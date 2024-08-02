@@ -8,12 +8,12 @@ icon:
 
 Note Challenge
 
-IT Security
+Cyber Security
 
 [[toc]]
 
 
-# IT Security
+# Cyber Security
 
 ## Video 1: Cyber Security: schütze Dich und Deine Daten!
 

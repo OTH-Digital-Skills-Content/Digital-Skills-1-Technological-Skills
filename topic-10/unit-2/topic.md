@@ -1,1 +1,1 @@
-Challenge - IT Security
+Challenge - Cyber Security

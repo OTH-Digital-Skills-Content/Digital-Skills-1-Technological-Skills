@@ -1,4 +1,4 @@
-# Challenge - IT Security
+# Challenge - Cyber Security
 
 
-IT Security
+Cyber Security

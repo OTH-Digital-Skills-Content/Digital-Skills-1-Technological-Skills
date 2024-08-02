@@ -1,1 +1,1 @@
-Challenge - IT Security - Vorbereitung
+Challenge - Cyber Security - Vorbereitung
