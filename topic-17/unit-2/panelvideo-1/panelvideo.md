@@ -1,3 +1,0 @@
-IoT
-
-Video zu IoT
