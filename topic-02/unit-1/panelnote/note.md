@@ -2,7 +2,8 @@
 
 # Wichtige Links
 
-
+| Thema | Link |
+| ------ | ----------- |
 |     Studienstart           |     [https://www.oth-regensburg.de/studieren/im-studium/studienstart](https://www.oth-regensburg.de/studieren/im-studium/studienstart) |                                        
 |     Studierendenausweis    |     [https://www.youtube.com/watch?v=JOwXYLZn_6g&t=2s](https://www.youtube.com/watch?v=JOwXYLZn_6g&t=2s)    |                                                    
 |     RZ-Kennung             |     [https://vimp.oth-regensburg.de/video/Tutorial-RZ-Kennung-erhalten-v2/f98d621758a6b93ef9dbb47277697043](https://vimp.oth-regensburg.de/video/Tutorial-RZ-Kennung-erhalten-v2/f98d621758a6b93ef9dbb47277697043) |  
