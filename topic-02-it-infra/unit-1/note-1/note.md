@@ -20,7 +20,7 @@ OTH-Infrastruktur
 Hier möchten wir Dir unsere Hochschule vorstellen. Entdecke die verschiedenen Einrichtungen, den Campus und erhalte wertvolle Informationen, um dich schnell bei uns zurechtzufinden. 
 Die OTH Regensburg ist eine moderne und dynamische Hochschule, die den Studierenden eine praxisorientierte Ausbildung und zahlreiche Möglichkeiten zur persönlichen und beruflichen Entwicklung bietet. Mit einem breiten Angebot an Studiengängen und zahlreichen Zusatzangeboten ist hier für jeden etwas dabei.
 
-Das Rechenzentrum (RZ) der OTH Regensburg ist eine zentrale Einrichtung, die für die IT-Infrastruktur und die Unterstützung von Studierenden, Mitarbeitenden und Lehrenden verantwortlich ist. Es sorgt dafür, dass die technischen Voraussetzungen für Forschung, Lehre und Verwaltung geschaffen und weiterentwickelt werden und dass die Hochschule auf dem neuesten Stand der Technologie bleibt.
+Das IT-Zentrum der OTH Regensburg ist eine zentrale Einrichtung, die für die IT-Infrastruktur und die Unterstützung von Studierenden, Mitarbeitenden und Lehrenden verantwortlich ist. Es sorgt dafür, dass die technischen Voraussetzungen für Forschung, Lehre und Verwaltung geschaffen und weiterentwickelt werden und dass die Hochschule auf dem neuesten Stand der Technologie bleibt.
 
 Mit einem Klick kannst Du die OTH Regensburg entdecken! Nimm an einem [virtuellen Rundgang](https://multimaps360.de/vr360/oth-regensburg/index.html#oth_nord) teil und verschaff Dir einen Überblick über unseren schönen Campus.
 
