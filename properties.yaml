@@ -9,8 +9,8 @@ auth: 1
 ignorepin: 1994
 
 ignore : 
-- topic-01-welcome
-- topic-02
+# - topic-01-welcome
+# - topic-02
 # - topic-03
 # - topic-04
 # - topic-05
