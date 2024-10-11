@@ -2,12 +2,13 @@
 moodle: https://elearning.oth-regensburg.de/course/view.php?id=5869
 # youtube: https://www.youtube.com/
 # zoom: https://zoom.us/
-piazza:
-    link: https://elearning.oth-regensburg.de/course/view.php?id=5869
-    title: Fragen & Antworten
-    icon:
-      icon: academicons:piazza
-      colour: info
+companions:
+  piazza:
+      link: https://elearning.oth-regensburg.de/course/view.php?id=5869
+      title: Fragen & Antworten
+      icon:
+        icon: academicons:piazza
+        colour: info
 credits: OTH Regensburg
 #parent: course/digital-skills-alle-semester-github.netlify.app
 
