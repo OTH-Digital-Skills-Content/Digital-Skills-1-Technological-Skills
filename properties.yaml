@@ -8,8 +8,8 @@ companions:
       link: https://piazza.com/class/m1918sb2m0161/
       title: Fragen & Antworten
       icon:
-        icon: academicons:piazza
-        colour: info
+        type: academicons:piazza
+        color: info
 #parent: course/digital-skills-alle-semester-github.netlify.app
 
 auth: 1
