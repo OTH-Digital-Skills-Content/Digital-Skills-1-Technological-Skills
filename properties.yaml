@@ -2,6 +2,7 @@
 moodle: https://elearning.oth-regensburg.de/course/view.php?id=5869
 # youtube: https://www.youtube.com/
 # zoom: https://zoom.us/
+credits: OTH Regensburg
 companions:
   piazza:
       link: https://elearning.oth-regensburg.de/course/view.php?id=5869
@@ -9,7 +10,6 @@ companions:
       icon:
         icon: academicons:piazza
         colour: info
-credits: OTH Regensburg
 #parent: course/digital-skills-alle-semester-github.netlify.app
 
 auth: 1
