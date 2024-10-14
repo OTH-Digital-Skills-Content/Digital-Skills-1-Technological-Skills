@@ -21,14 +21,8 @@ Einführung Scratch
 - Zum Programmieren gibt es verschiedene Sprachen. Die meisten funktionieren so, dass man einen Befehl in Form eines Textes eingibt und dann ausführt.
 - Wir lernen heute die Programmiersprache Scratch kennen, bei welcher es vorgefertigte Programmierblöcke gibt, welche sich wie Puzzleteile zusammenfügen lassen.
 
-
-## App
-
-- Zur Bearbeitung dieser Aufgaben benötigen Sie Ihr Tablet und die “Scratch” App. Bitte laden Sie diese auf Ihr Tablet - siehe Video bzw. Folien.
-- Es sei angemerkt, dass die nachstehenden Screenshots mit der online Version von Sratch erstellt worden sind d.h. es kann zu geringfügigen Abweichungen bei der Anzeige kommen.
-
-
 ## Programmierumgebung
+Sie entwickeln Scratch auf der folgenden Webseite: https://scratch.mit.edu/projects/editor/?tutorial=getStarted
 
 ![](img/01.png)
 
