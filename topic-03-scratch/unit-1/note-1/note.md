@@ -22,7 +22,8 @@ Einführung Scratch
 - Wir lernen heute die Programmiersprache Scratch kennen, bei welcher es vorgefertigte Programmierblöcke gibt, welche sich wie Puzzleteile zusammenfügen lassen.
 
 ## Programmierumgebung
-Sie entwickeln Scratch auf der folgenden Webseite: https://scratch.mit.edu/projects/editor/?tutorial=getStarted
+Sie entwickeln Scratch auf der folgenden Webseite: 
+[https://scratch.mit.edu/projects/editor/?tutorial=getStarted](https://scratch.mit.edu/projects/editor/?tutorial=getStarted)
 
 ![](img/01.png)
 
