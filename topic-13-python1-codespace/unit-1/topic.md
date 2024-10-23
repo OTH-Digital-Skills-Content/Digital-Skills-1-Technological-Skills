@@ -1,1 +1,1 @@
-Challenge - Python und Informatik - Codespace
+Challenge - Python und Informatik - Codespaces
