@@ -1,1 +1,0 @@
-Challenge - Python und Informatik - Codespaces
