@@ -13,7 +13,7 @@ companions:
 #parent: course/digital-skills-alle-semester-github.netlify.app
 
 auth: 1
-ignorepin: 1994
+ignorepin: 2024
 
 ignore : 
 - topic-01-welcome
