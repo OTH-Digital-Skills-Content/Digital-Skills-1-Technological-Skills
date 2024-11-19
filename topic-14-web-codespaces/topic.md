@@ -1,1 +1,1 @@
-# Labs SQL für Codespaces zum Testen
+# Lab Web für Codespaces zum Testen
