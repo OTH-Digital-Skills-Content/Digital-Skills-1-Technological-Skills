@@ -28,15 +28,26 @@ Power Automate ist Teil der Microsoft Power Platform.
 
 Quelle: https://learn.microsoft.com/de-de/power-apps/maker/data-platform/data-platform-intro
 
+# Zugriff auf Power Automate
+
+Sie haben mit Ihrem Studierendenaccount bereits Zugriff auf Power Automate und können sich direkt dort einloggen: https://make.powerautomate.com/
+
 
 
 ## Einfache Flows
+
 Einen neuen Flow können Sie bei Power Automate über den Link "+ Erstellen" in der Navigation erzeugen, vgl. die folgende Abbildung:
 
 ![flow-create](img/flow-create.png)
 
+Im folgenden Beispiel soll eine einfache Hello World Demo erstellt werden, die eine Benachrichtung per Mail sendet, sobald die User auf einen Button klicken.
 
+Dazu: **Sofortiger Cloudflow wählen**
 
+In der Bearbeitungsansicht des Flows kann durch Klick nach dem Start des Flows eine Aktion hinzugefügt werden (E-Mail Benachrichtigung erhalten). Die Felder Betreff und Textkörper können angepasst werden, um den Inhalt der Benachrichtigung zu individualisieren:
+![platform](img/flow-edit.png)
+
+Anschließend den Workflow speichern und Testen.
 
 ## Connectors
 
