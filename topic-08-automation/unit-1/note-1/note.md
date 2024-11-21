@@ -31,8 +31,10 @@ Quelle: https://learn.microsoft.com/de-de/power-apps/maker/data-platform/data-pl
 
 
 ## Einfache Flows
+Einen neuen Flow können Sie bei Power Automate über den Link "+ Erstellen" in der Navigation erzeugen, vgl. die folgende Abbildung:
 
-inkl. Vorlagen
+![flow-create](img/flow-create.png)
+
 
 
 
