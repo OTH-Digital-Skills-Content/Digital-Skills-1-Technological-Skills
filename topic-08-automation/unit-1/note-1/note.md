@@ -34,15 +34,14 @@ Sie haben mit Ihrem Studierendenaccount bereits Zugriff auf Power Automate und k
 
 
 
-## Einfache Flows
-
+## Hello World
 Einen neuen Flow können Sie bei Power Automate über den Link "+ Erstellen" in der Navigation erzeugen, vgl. die folgende Abbildung:
 
 ![flow-create](img/flow-create.png)
 
 Im folgenden Beispiel soll eine einfache Hello World Demo erstellt werden, die eine Benachrichtung per Mail sendet, sobald die User auf einen Button klicken.
 
-Dazu: **Sofortiger Cloudflow wählen**
+Dazu: **Sofortiger Cloudflow wählen** - Dies ist der Auslöser (**Trigger** für Ihren Workflow). Sie können Workflows auch automatisch auslösen, z.B. wenn Sie eine Mail erhalten.
 
 In der Bearbeitungsansicht des Flows kann durch Klick nach dem Start des Flows eine Aktion hinzugefügt werden (E-Mail Benachrichtigung erhalten). Die Felder Betreff und Textkörper können angepasst werden, um den Inhalt der Benachrichtigung zu individualisieren:
 ![platform](img/flow-edit.png)
@@ -54,68 +53,40 @@ Anschließend den Workflow speichern und Testen.
 Eine Auswahl von Anwendungen mit denen sich Power Automate verbinden kann:
 
 * **Sharepoint-Listen** - Webbasierte Listen aus Spalten und Zeilen, in denen sich Daten manuell oder automatisiert speichern lassen.
-
 * **Dropbox** - Clouddienst zum Ablegen und Teilen von Dateien.
-
 * **Dynamics** - CRM System von Microsoft zum Verwalten von Kundendaten.
-
 * **Excel Online**
-
 * **Google Dienste** z.B. Gmail, Google Drive, Google Sheets, Google Tasks
-
 * **Jira**
-
 * **Microsoft Dataverse** - Daten in der Microsoft Cloud speichern.
-
 * **Microsoft Teams**
-
 * **Notion** - Datenbankunterstütztes Wikitool
-
 * **One Drive** - Clouddienst zum Ablegen und Teilen von Dateien von Microsoft.
-
 * **One Note**
-
 * **Planner**
-
 * **Slack**
-
 * **Survey Monkey**
-
 * **Trello**
-
 * **Vimeo**
-
 * **X**
-
 * **Youtube**
-
 * **Zoom**
-
-  
 
 Vollständige laufend aktualisierte Liste hier: https://learn.microsoft.com/en-us/connectors/connector-reference/connector-reference-powerautomate-connectors
 
 
 
-## Trigger
-
+## Eingaben
+In Power Automate können Sie Eingaben aus vorhergehenden Schritten in späteren Schritten wieder verwenden. Das Hello World Beispiel lässt sich so anpassen, dass im Trigger eine Eingabe der Nutzer verlangt wird.
 
 
 ## Bedingungen
 
-
-
 ## Schleifen
-
-
 
 ## Funktionen
 
-
-
 ## Approval Workflows
-
-
 
 ## Demo AI Workflow mit Bilderkennung
 
