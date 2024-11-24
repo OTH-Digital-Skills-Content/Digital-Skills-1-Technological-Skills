@@ -79,7 +79,6 @@ Vollständige laufend aktualisierte Liste hier: https://learn.microsoft.com/en-u
 ## Eingaben
 In Power Automate können Sie Eingaben aus vorhergehenden Schritten in späteren Schritten wieder verwenden. Das Hello World Beispiel lässt sich so anpassen, dass im Trigger eine Eingabe der Nutzer verlangt wird.
 
-
 ## Bedingungen
 
 ## Schleifen
