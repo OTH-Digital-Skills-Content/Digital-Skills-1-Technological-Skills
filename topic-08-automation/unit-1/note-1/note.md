@@ -85,9 +85,29 @@ Erstellen Sie die Parameter wie dargestellt und Testen anschließend Ihren Flow:
 
 ![Flow manueller Input Testen](img/flow-manual-input-test.png)
 
+Die Eingaben aus Schritten eines Flows lassen sich in späteren Schritten wieder auslesen und weiterverwenden. In diesem Beispiel sollen die Informationen aus dem manuellen Trigger verwendet werden, um eine Bestätigungsmail zu verschicken. Klickt man auf die Aktion "E-Mail Benachrichtigung erhalten", lässt sich die Mail um Bausteine des vorherigen Schritts erweitern. Klickt man dazu in den Feldern Betreff oder Textkörper auf das blaue Blitzsymbol, öffnet sich ein Dialogfeld, und die Daten aus dem vorherigen Schritt lassen sich als Platzhalter einfügen.
+
+![Flow manueller Input für Mail](img/flow-manual-input-test-use_mail.png)
+
 Die dann versendete Benachrichtigung sollte dann wie folgt aussehen:
+![Flow manueller Input Mail](img/flow-manual-input-test-mail.png)
 
 ## Bedingungen
+
+Die Benachrichtigung aus dem vorhergehenden Schritt wird jetzt immer versendet, diese soll aber nur versendet werden, wenn die User unter "Kommst Du?" ja gewählt haben, bzw. den Schalter eingeschaltet haben. Dazu kann ein neuer Schritt durch Klick auf das +-Zeichen und Auswahl von "Aktion hinzufügen" hinzugefügt werden. In der Suche kann jetzt nach "Bedingung gesucht werden". Die Bedingung erscheint daraufhin im Flow. Um die Benachrichtigung nur an Nutzer zu versenden, die auch kommen können, auf die Bedingung klicken und diese mit den Daten aus dem vorhergehenden Schritt befüllen und anschließend die Aktion zum Versenden in den Zweig "TRUE" der Bedingung verschieben. Das Ergebnis sieht wie folgt aus:
+
+![Flow manueller Input Mail](img/flow-manual-input-condition.png)
+
+## Debugging
+Um Fehler in einem Flow zu finden, lassen sich diese mit Power Automate debuggen. Dabei kann jeder einzelne Schritt des Flows überprüft werden, um den Grund für den Fehler zu finden. Im Folgenden Beispiel wird die Benachrichtigung nicht versandt, obwohl die Bedingung augenscheinlich korrekt implementiert wurde. Der Flow will eine Mail verschicken, wenn die Nutzer angeben, dass Sie kommen wollen. Dazu wird geprüft, ob in der Eigenschaft "Kommst Du?" der Wert "Ja" steht:
+![Flow manueller Input Mail](img/flow-manual-input-condition-bug.png)
+
+Testet man den Flow, kann man die Ausührung ansehen und erhält eine Abbildung wie die Folgende (dazu unter Meine Flows den Flow auswählen und auf der nächsten Seite unter Ausführungsverlauf auf das Datum der letzten Ausführung klicken):
+![Flow manueller Input Mail](img/flow-manual-input-condition-debug.png)
+
+Die grünen Häkchen zeigen, dass der Flow ausgelöst wurde und die Bedingung geprüft wurde. Ebenfalls wird ersichtlich, dass der Zweiug TRUE nicht ausgeführt wurde. Klickt man jetzt auf den Schritt vor der Bedingung (d.h. dahin wo die Daten zur Überprüfung der Bedingung herkommen sollen), dann wird unter "EINGABEN" ersichtlich, dass der Wert von "Kommst Du?" nicht "Ja" sondern ```true``` ist, die Prüfung der Bedingung kann also nicht wahr werden, da "Ja" nicht gleich ```true``` ist:
+![Flow manueller Input Inspect](img/flow-manual-input-condition-inspect.png)
+Um das Problem zu beheben, muss die Prüfung der Bedingung auf ```true```angepasst werden, damit Prüfung und Daten aus dem vorhergehenden Schritt übereinstimmen.
 
 ## Schleifen
 
