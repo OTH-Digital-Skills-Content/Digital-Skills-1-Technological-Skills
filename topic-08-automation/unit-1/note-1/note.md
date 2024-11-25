@@ -32,22 +32,6 @@ Quelle: https://learn.microsoft.com/de-de/power-apps/maker/data-platform/data-pl
 
 Sie haben mit Ihrem Studierendenaccount bereits Zugriff auf Power Automate und können sich direkt dort einloggen: https://make.powerautomate.com/
 
-
-
-## Hello World
-Einen neuen Flow können Sie bei Power Automate über den Link "+ Erstellen" in der Navigation erzeugen, vgl. die folgende Abbildung:
-
-![flow-create](img/flow-create.png)
-
-Im folgenden Beispiel soll eine einfache Hello World Demo erstellt werden, die eine Benachrichtung per Mail sendet, sobald die User auf einen Button klicken.
-
-Dazu: **Sofortiger Cloudflow wählen** - Dies ist der Auslöser (**Trigger** für Ihren Workflow). Sie können Workflows auch automatisch auslösen, z.B. wenn Sie eine Mail erhalten.
-
-In der Bearbeitungsansicht des Flows kann durch Klick nach dem Start des Flows eine Aktion hinzugefügt werden (E-Mail Benachrichtigung erhalten). Die Felder Betreff und Textkörper können angepasst werden, um den Inhalt der Benachrichtigung zu individualisieren:
-![platform](img/flow-edit.png)
-
-Anschließend den Workflow speichern und Testen.
-
 ## Connectors
 
 Eine Auswahl von Anwendungen mit denen sich Power Automate verbinden kann:
@@ -74,10 +58,34 @@ Eine Auswahl von Anwendungen mit denen sich Power Automate verbinden kann:
 
 Vollständige laufend aktualisierte Liste hier: https://learn.microsoft.com/en-us/connectors/connector-reference/connector-reference-powerautomate-connectors
 
+## Hello World
+Einen neuen Flow können Sie bei Power Automate über den Link "+ Erstellen" in der Navigation erzeugen, vgl. die folgende Abbildung:
 
+![flow-create](img/flow-create.png)
+
+Im folgenden Beispiel soll eine einfache Hello World Demo erstellt werden, die eine Benachrichtung per Mail sendet, sobald die User auf einen Button klicken.
+
+Dazu: **Sofortiger Cloudflow wählen** - Dies ist der Auslöser (**Trigger** für Ihren Workflow). Sie können Workflows auch automatisch auslösen, z.B. wenn Sie eine Mail erhalten.
+
+In der Bearbeitungsansicht des Flows kann durch Klick nach dem Start des Flows eine Aktion hinzugefügt werden (E-Mail Benachrichtigung erhalten). Die Felder Betreff und Textkörper können angepasst werden, um den Inhalt der Benachrichtigung zu individualisieren:
+![platform](img/flow-edit.png)
+
+Anschließend den Workflow speichern und Testen. Achtung: Es kann mehrere Minuten dauern, bis Sie die Benachrichtigung erhalten.
 
 ## Eingaben
 In Power Automate können Sie Eingaben aus vorhergehenden Schritten in späteren Schritten wieder verwenden. Das Hello World Beispiel lässt sich so anpassen, dass im Trigger eine Eingabe der Nutzer verlangt wird.
+
+Im Folgenden soll ein Flow für eine Anmeldung zum Abendessen erstellt werden, der nur eine Benachrichtigung verschickt, wenn ein Nutzer zum Essen kommen kann.
+
+Dazu wieder einen Workflows mit einem manuellen Trigger erzeugen. Anschließend kann man durch Klick auf den Trigger weitere Daten von den Benutzern abfragen, vgl. folgender Screenshot.
+
+![Flow manueller Input](img/flow-manual-input.png)
+
+Erstellen Sie die Parameter wie dargestellt und Testen anschließend Ihren Flow:
+
+![Flow manueller Input Testen](img/flow-manual-input-test.png)
+
+Die dann versendete Benachrichtigung sollte dann wie folgt aussehen:
 
 ## Bedingungen
 
