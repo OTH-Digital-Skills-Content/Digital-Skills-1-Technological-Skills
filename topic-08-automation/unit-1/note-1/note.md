@@ -19,14 +19,32 @@ Was ist Power Automate?
 * Es ermöglicht die **Automatisierung von Aufgaben** und **Workflows**, z. B. das Versenden von E-Mails oder das Synchronisieren von Daten zwischen verschiedenen Anwendungen.
 * Es funktioniert mit **vielen Microsoft-Diensten** wie Excel, Outlook, SharePoint, sowie **Drittanbieter-Apps** (z. B. X, Google Drive, Gmail).
 * **Keine Programmierkenntnisse** erforderlich – es verwendet eine **grafische Oberfläche** für die Erstellung von Workflows (= Flows). Denken wie ein Programmierer hilft aber bei der Erstellung von Flows!
-* **Zahlreiche Vorlagen** und **vorgefertigte Workflows** erleichtern den Einstieg.
-* Es kann **manuelle Prozesse** ersetzen, wodurch Zeit gespart und **Fehler reduziert** werden.
+* **Zahlreiche Vorlagen** und **vorgefertigte Flows** erleichtern den Einstieg.
+* Es kann **manuelle Prozesse** ersetzen, wodurch Zeit gespart und **Fehler reduziert** werden können.
 
 Power Automate ist Teil der Microsoft Power Platform.
 
 ![platform](img/power-platform.png)
 
 Quelle: https://learn.microsoft.com/de-de/power-apps/maker/data-platform/data-platform-intro
+
+In Power Automate lassen sich "Flows" erstellen, die den Ablauf der Automation steuern. Dazu lassen sich die folgenden Elemente kombinieren:
+
+* **Trigger** - Jeder Flow benötigt einen Auslöser. Dies kann manuell sein, z.B. durch einen Klick, oder durch ein Ereignis in einem Clouddienst (z.B. eine neue E-Mail trifft ein, ein neues Element in einer Liste wird angelegt, eine neue Zeile wird einem Excel-Dokument hinzugefügt)
+* **Aktionen** - Jeder Flow verfügt über eine oder mehrere Aktionen. Aktionen sind die Dinge, die ein Workflow "tun" kann, wie beispielsweise E-Mails versenden, Dateien abspeichern, Exceldokumente aktualisieren, Chatnachrichten schreiben, einen neuen Task in einem Taskmanagement-Tool anlegen, etc.
+
+Die Entwicklung der Flows mit Triggern und Aktionen erfolgt dabei in einer graphischen Benutzeroberfläche (auch *low-code* genannt) und erlaubt Elemente, die auch in der klassischen Programmierung vorkommen, wie:
+
+* Variablen
+* Verzweigungen
+* Schleifen
+* Funktionen
+
+Vgl. die folgende Abbildung für ein Beispiel eines Flows:
+
+![Flow Beispiel](./img/flow-sample.png)
+
+Im Hintergrund von Power Automate kommuninzieren die verbundenen Dienste über TCP/IP bzw. http, um Daten untereinander auszutauschen. Für den Benutzer wird die Kommunikation aber unter der Oberfläche versteckt.
 
 # Zugriff auf Power Automate
 
