@@ -59,6 +59,10 @@ Eine Auswahl von Anwendungen mit denen sich Power Automate verbinden kann:
 Vollständige laufend aktualisierte Liste hier: https://learn.microsoft.com/en-us/connectors/connector-reference/connector-reference-powerautomate-connectors
 
 ## Hello World
+Bevor Flows erstellt werden, muss die Umgebung, d.h. der Speicherort der Flows von default auf ```OTH-IM-DigitalSkills-Students```geändert werden. Dazu rechts oben im Menü bei Umgebungen die richtige Umgebung wählen, vgl. der folgende Screenshot.
+
+![flow-create](img/umgebung.png)
+
 Einen neuen Flow können Sie bei Power Automate über den Link "+ Erstellen" in der Navigation erzeugen, vgl. die folgende Abbildung:
 
 ![flow-create](img/flow-create.png)
@@ -113,7 +117,149 @@ Um das Problem zu beheben, muss die Prüfung der Bedingung auf ```true```angepas
 
 ## Funktionen
 
-## Approval Workflows
+## Genehmigungsworkflows
+
+Ein Genehmigungsworkflow in Power Automate hilft dabei, Genehmigungen für Aufgaben oder Entscheidungen einfacher und schneller zu organisieren. Dabei wird automatisch eine Anfrage an die zuständigen Personen geschickt, die dann direkt genehmigen oder ablehnen können – zum Beispiel per E-Mail oder in Microsoft Teams. Das Ergebnis wird festgehalten, und je nachdem, wie entschieden wurde, können automatisch weitere Schritte ausgelöst werden, wie das Verschicken von Dokumenten oder das Aktualisieren von Einträgen. So spart man sich Zeit, vermeidet Chaos und behält den Überblick.
+
+Im folgenden Beispiel soll ein Flow erstellt werden, mit dem Mitarbeiter und Mitarbeiterinnen eines Unternehmens Urlaubsanträge stellen können, die dann genehmigt oder abgelehnt werden. Ziel des Flows ist es die Anträge und Entscheidungen an einer Stelle zu dokumentieren, anstatt den E-Mailverlauf mehrerer Personen durchsuchen zu müssen, wenn man wissen will, wie der Stand eines oder mehrerer Urlaubsanträge ist.
+
+Der Flow soll wie folgt ablaufen:
+
+* Urlaubsantrag wird ausgelöst durch einen Eintrag in einer Sharepoint Liste
+* Genehmigende Person wird per E-Mail über den Antrag informiert und kann genehmigen (```Approve```) und ablehnen).
+* Flow prüft Ergebnis der Genehmigung und:
+  * Schickt eine Mail an antragsstellende Person mit Ergebnis der Genehmigung
+  * Aktualisiert die Sharepointliste mit Ergebnis der Genehmigung und Kommentar der genehmigenden Person
+
+
+#### Liste erstellen
+
+Auslöser für den Workflow soll eine Sharepointliste sein. Listen sind online verfügbare "Tabellen" mit Zeilen und Spalten, die von verschiedenen Personen bearbeitet werden können. In Listen lassen sich Daten strukturiert sammeln, vergleichbar mit einer Exceltabelle. Listen können direkt im Web erstellt werden oder Teil eines Microsoft Teams sein. In diesem Beispiel wird eine Liste innerhalb eines Microsoft Teams verwendet. Die Liste sieht wie folgt aus:
+
+![Liste](img/list.png)
+
+Die Spalten sind wie folgt:
+
+* **Title** - Art des Urlaubs
+* **Startdatdum** - Start des Urlaubs
+* **Enddatum** - Ende des Urlaubs
+* **Kommentar** - Kommentar der antragstellenden Person
+* **Status** - Status des Antrags ist zu Beginn "beantragt", wechselt später, je nach Entscheidung auf "abgelehnt" oder "genehmigt"
+* **Kommentar Vorgesetzter** -  In diese Spalte werden später die Kommentare der genehmigenden Person eingetragen.
+
+#### Auslöser für den Flow erstellen und Benutzeprofil abfragen
+
+Im ersten Schritt muss der Flow ausgelöst werden, der Auslöser soll ein Eintrag in der Sharepointliste sein. Dazu den Trigger "Automatisierter Cloud-Flow" wählen. Als Name bietet sich beispielsweise "Urlaubsantrag bearbeiten" an. Als Trigger für den Flow den Sharepoint Trigger "Wenn ein Element erstellt wird" wählen. Hier kann später die Urlaubsantragsliste ausgewählt werden. 
+
+![Liste](img/urlaubsantrag-trigger.png)
+
+Nach dem Erstellen muss der Trigger noch umbenannt und die Liste gewählt werden. Dies sieht ungefähr so aus:
+
+![Liste](img/urlaubsantrag-trigger-config.png)
+
+Im nächsten Schritt sollen Daten über die antragstellende Person aufgerufen werden, diese sollen später verwendet werden, um den oder die Antragstellerin in einer Infomail mit Vornamen begrüßen zu können. Dazu mit dem Connector "Office 365 Benutzer" eine neue Aktion "Benutzerprofil abrufen (V2)" hinzufügen. Diese Aktion benötigt die Informationen über das Nutzerprofil des Antragsstellers. Diese Daten lassen sich aus dem Trigger des Flows wie folgt auslesen (Klick auf Blitz und dann bei Benutzer "Author/Email" in das Feld Benutzer (UPN) aus dem Trigger eintragen). Dies bedeutet, dass die gerade erstellte Aktion als Eingabe die E-Mail bekommt und dann später als Ausgabe alle Daten zum Benutzer liefern soll.
+
+![Liste](img/urlaubsantrag-daten-antragsteller.png)Um zu testen, ob das Profil richtig abgerufen wird, jetzt den Workflow testen: Klick auf "Testen" in der Navigation, dann manuell wählen. Der Flow wartet jetzt auf den Auslöser (d.h. einen neuen Eintrag in der Liste). Erstellt man einen neuen Urlaubsantrag in der Liste aktualisiert sich die Testansicht und sieht wie folgt aus:
+
+![Liste](img/urlaubsantrag-test.png)
+
+Die grünen Häkchen zeigen an, dass die Blöcke erfolgreich durchlaufen werden. Klickt man auf die Aktion "Daten Antragssteller abrufen", dann lässt sich auf der linken Seite kontrollieren, ob die Daten des Nutzerprofils richtig abgerufen wurden. In diesem Beispiel hat alles geklappt, da ```"givenName": "Markus"``` der richtige Vorname des antragstellenden Users ist.
+
+#### Starten der Genehmigung und Senden einer Anfrage an den Genehmiger
+
+In diesem Schritt soll der Genehmigungsworkflow gestartet werden und die Antragssteller über das Ergebnis der Genehmigung informiert werden.
+
+Zu Beginn muss dazu die Aktion "Starten und auf Genehmigung warten" aus dem Block "Genehmigungen" hinzugefügt werden und wie folgt konfiguriert werden:
+
+![Liste](img/urlaubsantrag-start.png)
+
+Die Felder bedeuten im Einzelnen (Erinnerung: Mit dem Blitz hinzufügen):
+
+* **Titel:** Betreff der versendeten Mail
+* **Zugewiesen zu:** Genehmiger des Antrags - Muss Benutzer der OTH Regensburg sein
+* **Details:**  Text der Mail an den Genehmiger - Dieses Feld greift auf Daten aus dem Trigger des Flows ("Wenn ein Urlaubsantrag in der Liste erstellt wird") zu:
+  * "Erstellt von DisplayName" - Name des Erstellers des Urlaubsantrags aus der Liste
+  * "Titel" - Art des Urlaubs aus dem Listeneintrag
+
+Zusätzlich wird den die Urlaubsdaten noch mit einer Funktion (Erinnerung: Mit fx hinzufügen) wie folgt in eine für Deutschland übliche Anzeige formatiert:
+
+~~~
+formatDateTime(triggerBody()?['Startdatum'], 'dd.MM.yyyy')
+~~~
+
+Erläuterung der Funktion:
+
+* Die Funktion `formatDateTime` formatiert ein Datumsfeld in ein bestimmtes Format.
+
+Erläuterung der beideen Parameter:
+
+* ```triggerBody()?['Startdatum']``` - Greift auf das Feld `Startdatum` im Body (Inhalt) des Triggers zu. - Das Fragezeichen `?` sorgt dafür, dass der Zugriff nur erfolgt, wenn der Body und das Feld existieren. Falls nicht, wird ein Fehler verhindert und `null` zurückgegeben.
+* ```Startdatum``` ist eine Eigenschaft aus der Liste.
+* **`'dd.MM.yyyy'`**: Legt fest, wie das Datum dargestellt wird:
+  - **`dd`**: Tag als zweistellige Zahl (01–31).
+  - **`.`**: Punkt als Trennzeichen.
+  - **`MM`**: Monat als zweistellige Zahl (01–12).
+  - **`.`**: Punkt als Trennzeichen.
+  - **`yyyy`**: Jahr mit vier Ziffern.
+
+Der Flow lässt sich direkt Speichern und Testen: Der Flow sollte starten, wenn ein Item in der Liste hinzugefügt wird und eine Mail verschicken. Die Ansicht für den Genehmiger sieht wie folgt aus:
+
+![Liste](img/urlaubsantrag-mail-approver.png)
+
+Klickt der Approver jetzt auf Genehmigen, kann noch ein Kommentar hinzugefügt werden und die Genehmigung abgesendet werden:
+
+![Liste](img/urlaubsantrag-mail-approver-approve.png)
+
+Die Testansicht sieht bei einem genehmigten Antrag wie folgt aus:
+
+![Liste](img/urlaubsantrag-mail-approver-approve-result.png)
+
+Entscheidend ist hier ```"outcome": "Approve"``` bei einer Genehmigung. Dieses Ergebnis wird im nächsten Schritt benötigt, um den Antragsteller über das Ergebnis zu informieren.
+
+#### Verarbeiten des Ergebnisses der Genehmigung und Informieren des Antragsstellers
+
+In diesem Schritt soll der Antragsteller über das Ergebnis der Genehmigung informiert werden. Hierzu sind die folgenden Schritte notwendig:
+
+* Einfügen einer Bedingung, um zu entscheiden welche Nachricht versendet werden soll.
+* Benachrichtigungen entsprechen der Bedingungsprüfung zu versenden.
+
+Um die Bedingung einzufügen eine neue Aktion mit + hinzufügen und nach Bedingung suchen. Wenn man die Bedingung anpasst, sieht das Ergebnis wie folgt aus:
+
+![Liste](img/urlaubsantrag-approve-check.png)
+
+Der Wert links in der Bedingungsprüfung stammt aus der Aktion "Starten und auf Genehmigung warten" und kann wieder per Blitzsymbol eingefügt werden. Das Ergebnis ```Approve``` ist die Ausgabe des Schritts "Starten und auf Genehmigung warten" bei erfolgter Genehmigung (siehe oben) und darf nicht frei gewählt werden.
+
+Durch das Klicken auf + bei True kann eine Mail versendet werden, diese kann wie folgt aussehen:
+
+![Mail approved](img/urlaubsantrag-approval-mail.png)
+
+Hier wird der Vorname aus dem Schritt Daten Antragsteller abrufen eingefügt, um eine personalisierte Begrüßung in der Mail zu erhalten. Die Konfiguration der Mail für die Ablehnung erfolgt auf dem gleichen Weg. Testet man den Flow jetzt erhält der Genehmiger eine Mail, kann genemigen oder ablehnen und der Antragsteller wird per Mail über das Ergebnis informiert. Als letzter Schritt fehlt nur noch eine Aktualisierung der Urlaubsantragsliste, um sich schnell einen Überblick über den Stand aller Anträge verschaffen zu können.
+
+**Achtung:** In diesem Beispiel erfolgt der Mailversand über den Connector SendGrid. SendGrid ist ein Anbieter für das Versenden von E-Mails für Unternehmenskampagnen. Wenn die Rechte korrekt konfiguriert sind, sollen sich Mails auch direkt über den Connector "E-Mail Benachrichtigung versenden (V3)" veschicken lassen.
+
+#### Variablen Sharepoint Liste aktualisieren und abschließend Testen
+
+Im letzten Schritt soll zusätzlich noch die Sharepointliste aktualisiert werden. Die Liste ließe sich jetzt direkt in den Verzweigungen TRUE/FALSE aktualisieren, sollen dabei mehrere Felder aktualisiert werden, würde doppelter Code entstehen, da alle Änderungen an zwei Stellen gemacht werden müssten.
+
+Um dieses Problem zu beheben, kann in Power Automate eine Variable ```Status Urlaubsantrag``` eingefügt werden, die in den Verzweigungen TRUE/FALSE auf den jeweiligen Wert gesetzt wird, der dann in der Liste aktualisiert werden soll, in diesem Fall ```genehmigt``` bzw. ```abgelehnt```.
+
+Um die Variable anzulegen wie folgt vorgehen:
+
+Vor der Verzweigung per + eine Aktion "Variable initialisieren" einfügen, dann suchen nach "variable" und die Variable ```Status Urlaubsantrag``` initialisieren (diese braucht erstmal keinen Wert):
+
+![Variable intialisieren](img/urlaubsantrag-trigger-variable-init.png)
+
+In der Bedingung kann jetzt der Wert der Variable gesetzt werden (wieder auf +, dann Suche nach Variable und anschließend Variable festlegen):
+
+![Variable setzen](img/urlaubsantrag-trigger-variable-set.png)
+
+Um die Liste zu aktualisieren **nach** der Bedingung eine neue Aktion "Sharepoint - Element aktualisieren" einfügen. Hier die Liste auswählen und unter ID die ID des zu Beginn des Flows hinzugefügten Listeneintrags aus dem Trigger auslesen und für diese Aktion setzen. Jetzt noch den Wert von Status nutzen, um den Status im Listenelement zu setzen:
+
+![Variable setzen](img/urlaubsantrag-approval-update-list.png)
+
+Der fertige Flow sieht dann wie folgt aus: 
+
+![Variable setzen](img/urlaubsantrag-flow-complete.png)
 
 ## Demo AI Workflow mit Bilderkennung
 
