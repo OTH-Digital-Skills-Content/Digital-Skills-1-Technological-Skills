@@ -15,18 +15,18 @@ Automation
 
 # Automation mit Power Automate
 Was ist Power Automate?
-* **Power Automate** ist ein **Automatisierungstool** von Microsoft.
-* Es ermöglicht die **Automatisierung von Aufgaben** und **Workflows**, z. B. das Versenden von E-Mails oder das Synchronisieren von Daten zwischen verschiedenen Anwendungen.
-* Es funktioniert mit **vielen Microsoft-Diensten** wie Excel, Outlook, SharePoint, sowie **Drittanbieter-Apps** (z. B. X, Google Drive, Gmail).
-* **Keine Programmierkenntnisse** erforderlich – es verwendet eine **grafische Oberfläche** für die Erstellung von Workflows (= Flows). Denken wie ein Programmierer hilft aber bei der Erstellung von Flows!
+* **Automatisierungstool** von Microsoft.
+* Ermöglicht die **Automatisierung von Aufgaben** und **Workflows**, z. B. das Versenden von E-Mails oder das Synchronisieren von Daten zwischen verschiedenen Anwendungen. Dinge, die man ansonsten manuell tun müsste, lassen sich durch Power Automate digitalisieren.
+* Funktioniert mit **vielen Microsoft-Diensten** wie Excel, Outlook, SharePoint, sowie **Drittanbieter-Apps** (z. B. X, Google Drive, Gmail).
+* **Keine Programmierkenntnisse** erforderlich – **Power Automate** verwendet eine **grafische Oberfläche** für die Erstellung von Workflows (= Flows). Denken wie ein Programmierer hilft aber bei der Erstellung von Flows!
 * **Zahlreiche Vorlagen** und **vorgefertigte Flows** erleichtern den Einstieg.
-* Es kann **manuelle Prozesse** ersetzen, wodurch Zeit gespart und **Fehler reduziert** werden können.
+* Kann **manuelle Prozesse** ersetzen, wodurch Zeit gespart und **Fehler reduziert** werden können.
 
-Power Automate ist Teil der Microsoft Power Platform.
+Power Automate ist Teil der Microsoft Power Platform und an der OTH für Studierende dieses Kurses verfügbar.
 
 ![platform](img/power-platform.png)
 
-Quelle: https://learn.microsoft.com/de-de/power-apps/maker/data-platform/data-platform-intro
+Bildquelle: https://learn.microsoft.com/de-de/power-apps/maker/data-platform/data-platform-intro
 
 In Power Automate lassen sich "Flows" erstellen, die den Ablauf der Automation steuern. Dazu lassen sich die folgenden Elemente kombinieren:
 
@@ -127,13 +127,22 @@ Um Fehler in einem Flow zu finden, lassen sich diese mit Power Automate debuggen
 Testet man den Flow, kann man die Ausührung ansehen und erhält eine Abbildung wie die Folgende (dazu unter Meine Flows den Flow auswählen und auf der nächsten Seite unter Ausführungsverlauf auf das Datum der letzten Ausführung klicken):
 ![Flow manueller Input Mail](img/flow-manual-input-condition-debug.png)
 
-Die grünen Häkchen zeigen, dass der Flow ausgelöst wurde und die Bedingung geprüft wurde. Ebenfalls wird ersichtlich, dass der Zweiug TRUE nicht ausgeführt wurde. Klickt man jetzt auf den Schritt vor der Bedingung (d.h. dahin wo die Daten zur Überprüfung der Bedingung herkommen sollen), dann wird unter "EINGABEN" ersichtlich, dass der Wert von "Kommst Du?" nicht "Ja" sondern ```true``` ist, die Prüfung der Bedingung kann also nicht wahr werden, da "Ja" nicht gleich ```true``` ist:
+Die grünen Häkchen zeigen, dass der Flow ausgelöst wurde und die Bedingung geprüft wurde. Ebenfalls wird ersichtlich, dass der Zweig TRUE nicht ausgeführt wurde. Klickt man jetzt auf den Schritt vor der Bedingung (d.h. dahin wo die Daten zur Überprüfung der Bedingung herkommen sollen), dann wird unter "EINGABEN" ersichtlich, dass der Wert von "Kommst Du?" nicht "Ja" sondern ```true``` ist, die Prüfung der Bedingung kann also nicht wahr werden, da "Ja" nicht gleich ```true``` ist:
 ![Flow manueller Input Inspect](img/flow-manual-input-condition-inspect.png)
-Um das Problem zu beheben, muss die Prüfung der Bedingung auf ```true```angepasst werden, damit Prüfung und Daten aus dem vorhergehenden Schritt übereinstimmen.
-
-## Schleifen
+Um das Problem zu beheben, muss die Prüfung der Bedingung auf ```true``` angepasst werden, damit Prüfung und Daten aus dem vorhergehenden Schritt übereinstimmen.
 
 ## Funktionen
+
+Power Automate verfügt über eingebaute Funktionen, welche die Erstellung von Flows erleichtern können, z.B.:
+
+* ```concat()``` zum Zusammenfügen mehrerer Strings
+* ```substring()``` für das "Auschneiden" von Text aus einem längeren String
+* ```toUpper()``` für das Umwandeln eines Strings in Großbuchstaben
+* ```dateDiffernce()``` um die Zeitdifferenz zwischen zwei Datumsangaben zu ermitteln
+
+Eine Funktion kann in Elemente eines Flows durch Klick auf das Symbol fx neben einem Eingabefeld eingefügt werden. Der Editor für Funktionen sieht wie folgt aus:
+
+![Flow Funktion](img/flow-function.png)
 
 ## Genehmigungsworkflows
 
