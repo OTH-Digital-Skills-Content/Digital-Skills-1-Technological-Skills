@@ -103,11 +103,24 @@ Im Folgenden wird erklärt, wie sich Flows in Power Automate erstellen, testen u
 * Flows werden ausgelöst durch z.B. Änderungen in den verbundenen Diensten und lösen dann verschiedene Aktionen aus
 * Power Automate ist der „Kleber“ zwischen unterschiedlichen Anwendungen
 
-# Power Automate - Connectors, Hello World, Eingaben, Bedingungen, Debugging und Funktionen 
+# Power Automate - Zugriff, Verbindungen, Hello World, Eingaben, Bedingungen, Debugging und Funktionen 
 ## Zugriff auf Power Automate
 Sie haben mit Ihrem Studierendenaccount bereits Zugriff auf Power Automate und können sich direkt dort einloggen: https://make.powerautomate.com/
 
-## Connectors
+Die Startseite von Power Automate sieht wie folgt aus:
+
+![power-automate-start](./img/power-automate-start.png)
+
+Dort finden sich die folgenden Bereiche:
+
+* Navigationsleiste:
+  * **Erstellen** - Neue Flows erstellen
+  * **Meine Flows** - Übersicht bereits erstellte Flows
+  * **Verbindungen (bei ... Mehr)** - Neue Verbindungen zu Clouddiensten erstellen und bestehende Verbindungen ansehen
+* **Umgebungen** ist der Bereich in Power Automate, in dem die eigenen Flows erstellt werden - Sollte immer ```OTH-IM-DigitalSkills-Students``` sein
+
+## Verbindungen
+
 Eine Auswahl von Anwendungen mit denen sich Power Automate verbinden kann:
 
 * **Sharepoint-Listen** - Webbasierte Listen aus Spalten und Zeilen, in denen sich Daten manuell oder automatisiert speichern lassen.
@@ -132,10 +145,10 @@ Eine Auswahl von Anwendungen mit denen sich Power Automate verbinden kann:
 
 Vollständige laufend aktualisierte Liste hier: https://learn.microsoft.com/en-us/connectors/connector-reference/connector-reference-powerautomate-connectors
 
-## Hello World
-Bevor Flows erstellt werden, muss die Umgebung, d.h. der Speicherort der Flows von default auf ```OTH-IM-DigitalSkills-Students```geändert werden. Dazu rechts oben im Menü bei Umgebungen die richtige Umgebung wählen, vgl. der folgende Screenshot.
+Um sich direkt in Power Automate einen Überblick über mögliche und bestehende Verbindungen zu verschaffen, links im Menü (unter Mehr) auf Verbindungen klicken. In der Suche lassen sich alle System anzeigen, mit denen man sich verbinden kann (z.B. Planner oder Google Tasks). Legt man hier eine Verbindung an, kann diese in den Flows genutzt werden.
 
-![flow-create](img/umgebung.png)
+## Hello World
+Als erster Beispiel soll ein Flow erstellt werden, der eine Benachrichtung verschickt, wenn der Flow gestartet wird.
 
 Einen neuen Flow können Sie bei Power Automate über den Link "+ Erstellen" in der Navigation erzeugen, vgl. die folgende Abbildung:
 
@@ -155,7 +168,7 @@ In Power Automate können Sie Eingaben aus vorhergehenden Schritten in späteren
 
 Im Folgenden soll ein Flow für eine Anmeldung zum Abendessen erstellt werden, der nur eine Benachrichtigung verschickt, wenn ein Nutzer zum Essen kommen kann.
 
-Dazu wieder einen Workflows mit einem manuellen Trigger erzeugen. Anschließend kann man durch Klick auf den Trigger weitere Daten von den Benutzern abfragen, vgl. folgender Screenshot.
+Dazu wieder einen Flow mit einem manuellen Trigger erzeugen. Anschließend kann man durch Klick auf den Trigger weitere Daten von den Benutzern abfragen, vgl. folgender Screenshot.
 
 ![Flow manueller Input](img/flow-manual-input.png)
 
