@@ -14,7 +14,16 @@ Automation
 
 
 # Automation mit Power Automate
-Was ist Power Automate?
+Viele Unternehmen erledigen Dinge manuell mit hohem Personalaufwand und Potential für Fehler:
+
+* Urlaubsanträge stellen und genehmigen
+* Dokumente freigeben wie z.B. Mails an Kunden
+* Daten zwischen verschiedenen Systemen synchron halten (z.B. Buchhaltungssystem und CRM)
+* Rechnungen verarbeiten
+* Meetingprotokolle verteilen
+
+#### Was ist Power Automate?
+
 * **Automatisierungstool** von Microsoft.
 * Ermöglicht die **Automatisierung von Aufgaben** und **Workflows**, z. B. das Versenden von E-Mails oder das Synchronisieren von Daten zwischen verschiedenen Anwendungen. Dinge, die man ansonsten manuell tun müsste, lassen sich durch Power Automate digitalisieren.
 * Funktioniert mit **vielen Microsoft-Diensten** wie Excel, Outlook, SharePoint, sowie **Drittanbieter-Apps** (z. B. X, Google Drive, Gmail).
@@ -38,13 +47,36 @@ Bildquelle: ChatGPT
 
 **Szenario:**  "My fresh pizza" verfügt über eine Support-Emailadresse support@my-fresh-pizza.de, an die sich Kunden mit allen Anliegen wenden können. Die Anfragen müssen von zwei Supportmitarbeitern bearbeitet und manuell per Mail beantwortet werden. Ist einer der Mitarbeiter krank, weiß der andere nicht, wie der Stand der Bearbeitung ist. Auch ist es für das Team schwer nachzuvollziehen, welche Mails sie bereits beantwortet haben. Das Unternehmen möchte kein teures Ticketsystem einkaufen, sondern sucht nach einer Alternative.
 
-**Mögliche Lösung:** Power Automate überwacht die Inbox von support@my-fresh-pizza.de und erstellt immer ein neues Ticket (bzw. eine Aufgabe) in dem Aufgabenmanagementtool Planner von Microsoft (oder in einem anderen Task-Manager, zu dem sich Power Automate verbinden kann). Alle neuen Tickets landen dabei in der Spalte "offen" und enthalten den Text der Mailanfrage, sowie die Absenderadresse. Die Mitarbeiter können sich Tickets, die sie bearbeiten selbständig in eine weitere Spalte "In Bearbeitung" ziehen. Sobald das Ticket bearbeitet wurde, können die Mitarbeiter das Ticket mit der Antwort kommentieren und in die Spalte "erledigt" verschieben. Daraufhin versendet Power Automate automatisch eine Mail an den Kunden und fügt den Kommentar des Mitarbeiters in die Antwort mit ein. Der Status eines Tickets wird somit nachvollziehbar und die Supportmitarbeiter können auch bei Krankheit oder Urlaub des jeweils anderen Mitarbeiters weiter an den Tickets arbeiten.
+**Mögliche Lösung:** Power Automate überwacht die Inbox von support@my-fresh-pizza.de und erstellt immer ein neues Ticket (bzw. eine Aufgabe) in dem Aufgabenmanagementtool Planner von Microsoft (oder in einem anderen Task-Manager, zu dem sich Power Automate verbinden kann). Alle neuen Tickets landen dabei in der Spalte "offen" und enthalten den Text der Mailanfrage, sowie die Absenderadresse. 
+
+![platform](img/tickets.png)
+
+Die Mitarbeiter können sich Tickets, die sie bearbeiten selbständig in eine weitere Spalte "In Bearbeitung" ziehen. Sobald das Ticket bearbeitet wurde, können die Mitarbeiter das Ticket mit der Antwort kommentieren und in die Spalte "erledigt" verschieben. Daraufhin versendet Power Automate automatisch eine Mail an den Kunden und fügt den Kommentar des Mitarbeiters in die Antwort mit ein. Der Status eines Tickets wird somit nachvollziehbar und die Supportmitarbeiter können auch bei Krankheit oder Urlaub des jeweils anderen Mitarbeiters weiter an den Tickets arbeiten.
 
 #### Urlaubsanträge
 
-**Szenario**: "My fresh pizza" muss sicherzustellen, dass nicht alle Mitarbeiter zur selben Zeit in den Urlaub gehen, da ansonsten die Produktion und der Versand stillstehen würden. Daher müssen die Mitarbeiter eine Mail an ihren Vorgesetzten schicken, der den Urlaub dann genehmigen oder ablehnen kann. Vergisst der Vorgesetzte die Mail, kann es zu Wartezeiten kommen und viele Mails zwischen Mitarbeiter und Vorgesetztem gehen hin und her. Weiterhin muss der Vorgesetzte manuell eine Excelliste mit den beantragten und genehmigten Urlauben pflegen.
+**Szenario**: "My fresh pizza" muss sicherzustellen, dass nicht alle Mitarbeiter zur selben Zeit in den Urlaub gehen, da ansonsten die Produktion und der Versand stillstehen würden. Daher müssen die Mitarbeiter eine Mail an ihren Vorgesetzten schicken, der den Urlaub dann genehmigen oder ablehnen kann. Vergisst der Vorgesetzte die Mail, kann es zu Wartezeiten kommen und viele Mails zwischen Mitarbeiter und Vorgesetztem gehen hin und her.
 
-**Mögliche Lösung:** "My fresh pizza" richtet eine Sharepoint-Liste ein, eine Art webbasiertes Exceltool mit Zeilen und Spalten. In diese Urlaubsantragsliste können die Mitarbeiter jetzt selbst eintragen, wann sie gerne in den Urlaub gehen wollen. Sobald ein neuer Eintrag von einem Mitarbeiter in der Liste erstellt worden ist, verschickt Power Automate automatisch eine Genehmigungsanfrage an den Vorgesetzten. Dieser entscheidet dann und kann mit einem Klick den Antrag kommentieren und genehmigen oder ablehnen. Die Mitarbeiter werden automatisch über die Entscheidung informiert und die Liste mit den Urlaubsanträgen wird automatisch mit dem Ergebnis der Entscheidung aktualisiert. Somit werden Mails "eingespart" und der Status und das Ergebnis eines Antrags sind für alle transparent einsehbar. Der Vorgesetzte benötigt seine manuell gepflegte Urlaubsliste in Excel nicht mehr.
+Beispielsweise lässt die folgende Mail eines Mitarbeiters viele Fragen offen:
+
+> Betreff: Urlaub?
+>
+> Hey Chef,
+>
+> ich wollte mal fragen, ob ich nächste Woche oder irgendwann im Dezember ein paar Urlaubstage nehmen könnte. Hab das nicht genau durchgeplant, also wenn’s nicht passt, finden wir sicher eine andere Lösung.
+>
+> Sag einfach Bescheid, danke dir!
+>
+> Grüße
+>  Chris
+
+Weiterhin muss der Vorgesetzte manuell eine Excelliste mit den beantragten und genehmigten Urlauben pflegen.
+
+**Mögliche Lösung:** "My fresh pizza" richtet eine Sharepoint-Liste ein, eine Art webbasiertes Exceltool mit Zeilen und Spalten. In diese Urlaubsantragsliste können die Mitarbeiter jetzt selbst eintragen, wann sie gerne in den Urlaub gehen wollen. Sobald ein neuer Eintrag von einem Mitarbeiter in der Liste erstellt worden ist, verschickt Power Automate automatisch eine Genehmigungsanfrage an den Vorgesetzten. 
+
+![platform](img/urlaubsliste.png)
+
+Dieser entscheidet dann und kann mit einem Klick den Antrag kommentieren und genehmigen oder ablehnen. Die Mitarbeiter werden automatisch über die Entscheidung informiert und die Liste mit den Urlaubsanträgen wird automatisch mit dem Ergebnis der Entscheidung aktualisiert. Somit werden Mails "eingespart" und der Status und das Ergebnis eines Antrags sind für alle transparent einsehbar. Der Vorgesetzte benötigt seine manuell gepflegte Urlaubsliste in Excel nicht mehr.
 
 In Power Automate lassen sich "Flows" erstellen, die den Ablauf der Automation steuern. Dazu lassen sich die folgenden Elemente kombinieren:
 
@@ -60,9 +92,19 @@ Die Entwicklung der Flows mit Triggern und Aktionen erfolgt dabei in einer graph
 
 Vgl. die folgende Abbildung für ein Beispiel eines Flows:
 
-![Flow Beispiel](./img/flow-sample.png)
+![Flow Beispiel](img/urlaubsantrag-flow-complete.png)
 
-Im Hintergrund von Power Automate kommuninzieren die verbundenen Dienste über TCP/IP bzw. http, um Daten untereinander auszutauschen. Für den Benutzer wird die Kommunikation aber unter der Oberfläche versteckt.
+Im Hintergrund von Power Automate kommuninzieren die verbundenen Dienste über TCP/IP bzw. http, um Daten untereinander auszutauschen. Für den Benutzer wird die Kommunikation aber unter der Oberfläche versteckt. 
+
+Im Folgenden wird erklärt, wie sich Flows in Power Automate erstellen, testen und veröffentlichen lassen.
+
+## Fazit Power Automate
+
+* Power Automate verbindet sich mit verschiedenen Diensten
+* Flows werden ausgelöst durch z.B. Änderungen in den verbundenen Diensten und lösen dann verschiedene Aktionen aus
+* Power Automate ist der „Kleber“ zwischen unterschiedlichen Anwendungen
+
+
 
 # Zugriff auf Power Automate
 

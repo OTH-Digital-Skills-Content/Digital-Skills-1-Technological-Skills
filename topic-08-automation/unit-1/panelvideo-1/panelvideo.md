@@ -1,3 +1,0 @@
-Automation
-
-Video zu Automation
