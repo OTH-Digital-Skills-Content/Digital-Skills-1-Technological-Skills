@@ -13,7 +13,7 @@ Automation
 [[toc]]
 
 
-# Automation mit Power Automate
+# Überblick zu Automation und Power Automate
 Viele Unternehmen erledigen Dinge manuell mit hohem Personalaufwand und Potential für Fehler:
 
 * Urlaubsanträge stellen und genehmigen
@@ -22,7 +22,7 @@ Viele Unternehmen erledigen Dinge manuell mit hohem Personalaufwand und Potentia
 * Rechnungen verarbeiten
 * Meetingprotokolle verteilen
 
-#### Was ist Power Automate?
+## Was ist Power Automate?
 
 * **Automatisierungstool** von Microsoft.
 * Ermöglicht die **Automatisierung von Aufgaben** und **Workflows**, z. B. das Versenden von E-Mails oder das Synchronisieren von Daten zwischen verschiedenen Anwendungen. Dinge, die man ansonsten manuell tun müsste, lassen sich durch Power Automate digitalisieren.
@@ -43,7 +43,7 @@ Was könnte man mit Power Automate automatisieren: Das Startup "My fresh pizza" 
 
 Bildquelle: ChatGPT
 
-#### Ticketsystem
+## Ticketsystem
 
 **Szenario:**  "My fresh pizza" verfügt über eine Support-Emailadresse support@my-fresh-pizza.de, an die sich Kunden mit allen Anliegen wenden können. Die Anfragen müssen von zwei Supportmitarbeitern bearbeitet und manuell per Mail beantwortet werden. Ist einer der Mitarbeiter krank, weiß der andere nicht, wie der Stand der Bearbeitung ist. Auch ist es für das Team schwer nachzuvollziehen, welche Mails sie bereits beantwortet haben. Das Unternehmen möchte kein teures Ticketsystem einkaufen, sondern sucht nach einer Alternative.
 
@@ -53,7 +53,7 @@ Bildquelle: ChatGPT
 
 Die Mitarbeiter können sich Tickets, die sie bearbeiten selbständig in eine weitere Spalte "In Bearbeitung" ziehen. Sobald das Ticket bearbeitet wurde, können die Mitarbeiter das Ticket mit der Antwort kommentieren und in die Spalte "erledigt" verschieben. Daraufhin versendet Power Automate automatisch eine Mail an den Kunden und fügt den Kommentar des Mitarbeiters in die Antwort mit ein. Der Status eines Tickets wird somit nachvollziehbar und die Supportmitarbeiter können auch bei Krankheit oder Urlaub des jeweils anderen Mitarbeiters weiter an den Tickets arbeiten.
 
-#### Urlaubsanträge
+## Urlaubsanträge
 
 **Szenario**: "My fresh pizza" muss sicherzustellen, dass nicht alle Mitarbeiter zur selben Zeit in den Urlaub gehen, da ansonsten die Produktion und der Versand stillstehen würden. Daher müssen die Mitarbeiter eine Mail an ihren Vorgesetzten schicken, der den Urlaub dann genehmigen oder ablehnen kann. Vergisst der Vorgesetzte die Mail, kann es zu Wartezeiten kommen und viele Mails zwischen Mitarbeiter und Vorgesetztem gehen hin und her.
 
@@ -99,19 +99,15 @@ Im Hintergrund von Power Automate kommuninzieren die verbundenen Dienste über T
 Im Folgenden wird erklärt, wie sich Flows in Power Automate erstellen, testen und veröffentlichen lassen.
 
 ## Fazit Power Automate
-
 * Power Automate verbindet sich mit verschiedenen Diensten
 * Flows werden ausgelöst durch z.B. Änderungen in den verbundenen Diensten und lösen dann verschiedene Aktionen aus
 * Power Automate ist der „Kleber“ zwischen unterschiedlichen Anwendungen
 
-
-
-# Zugriff auf Power Automate
-
+# Power Automate - Connectors, Hello World, Eingaben, Bedingungen, Debugging und Funktionen 
+## Zugriff auf Power Automate
 Sie haben mit Ihrem Studierendenaccount bereits Zugriff auf Power Automate und können sich direkt dort einloggen: https://make.powerautomate.com/
 
 ## Connectors
-
 Eine Auswahl von Anwendungen mit denen sich Power Automate verbinden kann:
 
 * **Sharepoint-Listen** - Webbasierte Listen aus Spalten und Zeilen, in denen sich Daten manuell oder automatisiert speichern lassen.
@@ -175,7 +171,6 @@ Die dann versendete Benachrichtigung sollte dann wie folgt aussehen:
 ![Flow manueller Input Mail](img/flow-manual-input-test-mail.png)
 
 ## Bedingungen
-
 Die Benachrichtigung aus dem vorhergehenden Schritt wird jetzt immer versendet, diese soll aber nur versendet werden, wenn die User unter "Kommst Du?" ja gewählt haben, bzw. den Schalter eingeschaltet haben. Dazu kann ein neuer Schritt durch Klick auf das +-Zeichen und Auswahl von "Aktion hinzufügen" hinzugefügt werden. In der Suche kann jetzt nach "Bedingung gesucht werden". Die Bedingung erscheint daraufhin im Flow. Um die Benachrichtigung nur an Nutzer zu versenden, die auch kommen können, auf die Bedingung klicken und diese mit den Daten aus dem vorhergehenden Schritt befüllen und anschließend die Aktion zum Versenden in den Zweig "TRUE" der Bedingung verschieben. Das Ergebnis sieht wie folgt aus:
 
 ![Flow manueller Input Mail](img/flow-manual-input-condition.png)
@@ -192,7 +187,6 @@ Die grünen Häkchen zeigen, dass der Flow ausgelöst wurde und die Bedingung ge
 Um das Problem zu beheben, muss die Prüfung der Bedingung auf ```true``` angepasst werden, damit Prüfung und Daten aus dem vorhergehenden Schritt übereinstimmen.
 
 ## Funktionen
-
 Power Automate verfügt über eingebaute Funktionen, welche die Erstellung von Flows erleichtern können, z.B.:
 
 * ```concat()``` zum Zusammenfügen mehrerer Strings
@@ -204,8 +198,7 @@ Eine Funktion kann in Elemente eines Flows durch Klick auf das Symbol fx neben e
 
 ![Flow Funktion](img/flow-function.png)
 
-## Genehmigungsworkflows
-
+# Genehmigungsworkflows
 Ein Genehmigungsworkflow in Power Automate hilft dabei, Genehmigungen für Aufgaben oder Entscheidungen einfacher und schneller zu organisieren. Dabei wird automatisch eine Anfrage an die zuständigen Personen geschickt, die dann direkt genehmigen oder ablehnen können – zum Beispiel per E-Mail oder in Microsoft Teams. Das Ergebnis wird festgehalten, und je nachdem, wie entschieden wurde, können automatisch weitere Schritte ausgelöst werden, wie das Verschicken von Dokumenten oder das Aktualisieren von Einträgen. So spart man sich Zeit, vermeidet Chaos und behält den Überblick.
 
 Im folgenden Beispiel soll ein Flow erstellt werden, mit dem Mitarbeiter und Mitarbeiterinnen eines Unternehmens Urlaubsanträge stellen können, die dann genehmigt oder abgelehnt werden. Ziel des Flows ist es die Anträge und Entscheidungen an einer Stelle zu dokumentieren, anstatt den E-Mailverlauf mehrerer Personen durchsuchen zu müssen, wenn man wissen will, wie der Stand eines oder mehrerer Urlaubsanträge ist.
@@ -219,8 +212,7 @@ Der Flow soll wie folgt ablaufen:
   * Aktualisiert die Sharepointliste mit Ergebnis der Genehmigung und Kommentar der genehmigenden Person
 
 
-#### Liste erstellen
-
+## Liste erstellen
 Auslöser für den Workflow soll eine Sharepointliste sein. Listen sind online verfügbare "Tabellen" mit Zeilen und Spalten, die von verschiedenen Personen bearbeitet werden können. In Listen lassen sich Daten strukturiert sammeln, vergleichbar mit einer Exceltabelle. Listen können direkt im Web erstellt werden oder Teil eines Microsoft Teams sein. In diesem Beispiel wird eine Liste innerhalb eines Microsoft Teams verwendet. Die Liste sieht wie folgt aus:
 
 ![Liste](img/list.png)
@@ -252,8 +244,7 @@ Im nächsten Schritt sollen Daten über die antragstellende Person aufgerufen we
 
 Die grünen Häkchen zeigen an, dass die Blöcke erfolgreich durchlaufen werden. Klickt man auf die Aktion "Daten Antragssteller abrufen", dann lässt sich auf der linken Seite kontrollieren, ob die Daten des Nutzerprofils richtig abgerufen wurden. In diesem Beispiel hat alles geklappt, da ```"givenName": "Markus"``` der richtige Vorname des antragstellenden Users ist.
 
-#### Starten der Genehmigung und Senden einer Anfrage an den Genehmiger
-
+## Starten der Genehmigung und Senden einer Anfrage an den Genehmiger
 In diesem Schritt soll der Genehmigungsworkflow gestartet werden und die Antragssteller über das Ergebnis der Genehmigung informiert werden.
 
 Zu Beginn muss dazu die Aktion "Starten und auf Genehmigung warten" aus dem Block "Genehmigungen" hinzugefügt werden und wie folgt konfiguriert werden:
@@ -303,8 +294,7 @@ Die Testansicht sieht bei einem genehmigten Antrag wie folgt aus:
 
 Entscheidend ist hier ```"outcome": "Approve"``` bei einer Genehmigung. Dieses Ergebnis wird im nächsten Schritt benötigt, um den Antragsteller über das Ergebnis zu informieren.
 
-#### Verarbeiten des Ergebnisses der Genehmigung und Informieren des Antragsstellers
-
+## Verarbeiten des Ergebnisses der Genehmigung und Informieren des Antragsstellers
 In diesem Schritt soll der Antragsteller über das Ergebnis der Genehmigung informiert werden. Hierzu sind die folgenden Schritte notwendig:
 
 * Einfügen einer Bedingung, um zu entscheiden welche Nachricht versendet werden soll.
@@ -324,8 +314,7 @@ Hier wird der Vorname aus dem Schritt Daten Antragsteller abrufen eingefügt, um
 
 **Achtung:** In diesem Beispiel erfolgt der Mailversand über den Connector SendGrid. SendGrid ist ein Anbieter für das Versenden von E-Mails für Unternehmenskampagnen. Wenn die Rechte korrekt konfiguriert sind, sollen sich Mails auch direkt über den Connector "E-Mail Benachrichtigung versenden (V3)" veschicken lassen.
 
-#### Variablen Sharepoint Liste aktualisieren und abschließend Testen
-
+## Variablen Sharepoint Liste aktualisieren und abschließend Testen
 Im letzten Schritt soll zusätzlich noch die Sharepointliste aktualisiert werden. Die Liste ließe sich jetzt direkt in den Verzweigungen TRUE/FALSE aktualisieren, sollen dabei mehrere Felder aktualisiert werden, würde doppelter Code entstehen, da alle Änderungen an zwei Stellen gemacht werden müssten.
 
 Um dieses Problem zu beheben, kann in Power Automate eine Variable ```Status Urlaubsantrag``` eingefügt werden, die in den Verzweigungen TRUE/FALSE auf den jeweiligen Wert gesetzt wird, der dann in der Liste aktualisiert werden soll, in diesem Fall ```genehmigt``` bzw. ```abgelehnt```.
@@ -348,7 +337,7 @@ Der fertige Flow sieht dann wie folgt aus:
 
 ![Variable setzen](img/urlaubsantrag-flow-complete.png)
 
-## Demo AI Workflow mit Bilderkennung
+# Demo: AI Workflow mit Bilderkennung
 
 Idee: Für einen Katalog werden Bilder verwendet, die bisher immer manuell beschrieben wurden. Der Workflow soll dabei helfen die Bilder automatisiert zu beschreiben.
 
@@ -357,22 +346,6 @@ Idee: Für einen Katalog werden Bilder verwendet, die bisher immer manuell besch
 **Aktion:** Beschreibung eines Bilds generieren
 
 **Aktion:** SharePoint Liste - Element erstellen
-
-
-
-
-
-
-
-## Demo: Todos erstellen auf Basis von Nachrichten in einem Teams Channel
-
-Idee: Entwicklung eines Tools, das Teams dabei unterstützt eine gemeinsame Aufgabenliste aus einem Teams-Channel heraus per Nachrichten zu steuern.
-
-Features:
-
-* Erstellen einer neuen Nachricht in einem Channel, die den Begriff "todo:" im Titel enthält, die beispielsweise die Folgende: "Todo: Projektrisiken dokumentieren"
-* Erstellen einer neuen Aufgabe, mit dem Text des Titels (Ohne "Todo:") in einer Aufgabenliste in Teams
-* Erstellen einer E-Mailbenachrichtigung: XYZ hat soeben eine Aufgabe erstellt.
 
 
 
