@@ -205,7 +205,7 @@ Power Automate verfügt über eingebaute Funktionen, welche die Erstellung von F
 * ```concat()``` zum Zusammenfügen mehrerer Strings
 * ```substring()``` für das "Auschneiden" von Text aus einem längeren String
 * ```toUpper()``` für das Umwandeln eines Strings in Großbuchstaben
-* ```dateDiffernce()``` um die Zeitdifferenz zwischen zwei Datumsangaben zu ermitteln
+* ```dateDifference()``` um die Zeitdifferenz zwischen zwei Datumsangaben zu ermitteln
 
 Eine Funktion kann in Elemente eines Flows durch Klick auf das Symbol fx neben einem Eingabefeld eingefügt werden. Der Editor für Funktionen sieht wie folgt aus:
 
@@ -219,10 +219,19 @@ Im folgenden Beispiel soll ein Flow erstellt werden, mit dem Mitarbeiter und Mit
 Der Flow soll wie folgt ablaufen:
 
 * Urlaubsantrag wird ausgelöst durch einen Eintrag in einer Sharepoint Liste
-* Genehmigende Person wird per E-Mail über den Antrag informiert und kann genehmigen (```Approve```) und ablehnen).
+* Genehmigende Person wird per E-Mail über den Antrag informiert und kann genehmigen (```Approve```) oder ablehnen.
 * Flow prüft Ergebnis der Genehmigung und:
   * Schickt eine Mail an antragsstellende Person mit Ergebnis der Genehmigung
   * Aktualisiert die Sharepointliste mit Ergebnis der Genehmigung und Kommentar der genehmigenden Person
+
+Dazu werden die folgenden Verbindungen benötigt:
+
+* **Microsoft Sharepoint** für den Zugriff auf die Urlaubsliste und das Auslösen des Flows
+* **Office 365 Benutzer** um Profildaten des Antragstellers auszulesen (hier wird der Vorname für eine personalisierte Benachrichtigung benötigt)
+* **Starten und auf Genehmigung warten** um den Genehmigungsworkflow zu starten, die Benachrichtigung an den Vorgesetzten zu senden und auf das Ergebnis der Genehmigung zu warten.
+* **E-Mail-Benachrichtigung senden (V3)** für das Versenden von Benachrichtigungen an den Antragsteller (im Video zu Challenge war diese Verbindung noch nicht korrekt durch das IT-Zentrum eingerichtet, daher werden diese Mails über den Anbieter SendGrid verschickt - Der Flow funktioniert mit beiden Verbindungen)
+* **Bedingung** um auf das Ergebnis der Genehmigung zu reagieren.
+* **Variablen** um sich das Ergebnis der Genehmigung zu "merken"
 
 
 ## Liste erstellen
@@ -260,7 +269,9 @@ Die grünen Häkchen zeigen an, dass die Blöcke erfolgreich durchlaufen werden.
 ## Starten der Genehmigung und Senden einer Anfrage an den Genehmiger
 In diesem Schritt soll der Genehmigungsworkflow gestartet werden und die Antragssteller über das Ergebnis der Genehmigung informiert werden.
 
-Zu Beginn muss dazu die Aktion "Starten und auf Genehmigung warten" aus dem Block "Genehmigungen" hinzugefügt werden und wie folgt konfiguriert werden:
+Zu Beginn muss dazu die Aktion "Starten und auf Genehmigung warten" aus dem Block "Genehmigungen" hinzugefügt werden. Als Genehmingstyp "Genehmigen/ablehnen: Erste Antwort" wählen, weil der Flow nach der ersten Antwort direkt weitergehen soll.
+
+Die restliche Konfiguration sieht wie folgt konfiguriert aus:
 
 ![Liste](img/urlaubsantrag-start.png)
 
@@ -352,41 +363,27 @@ Der fertige Flow sieht dann wie folgt aus:
 
 # Demo: AI Workflow mit Bilderkennung
 
-Idee: Für einen Katalog werden Bilder verwendet, die bisher immer manuell beschrieben wurden. Der Workflow soll dabei helfen die Bilder automatisiert zu beschreiben.
+Auch Power Automate integriert mit dem **AI-Builder** KI Funktionen.
+
+### Rechnungsscanner
+
+**Idee:** Rechnungen analysieren und Informationen extrahieren.
+
+**Trigger**: Sofortiger Cloudflow mit Upload einer Rechnung.
+
+**Aktion:** Informationen mit AI-Builder aus der Rechnung extrahieren
+
+**Aktion:** E-Mail mit extrahierten Informationen verschicken.
+
+### Katalogbilder mit AI beschreiben
+
+**Idee:** Für einen Katalog werden Bilder verwendet, die bisher immer manuell beschrieben wurden. Der Workflow soll dabei helfen die Bilder automatisiert zu beschreiben.
 
 **Trigger**: OneDrive - Wenn eine Datei erstellt wurde
 
-**Aktion:** Beschreibung eines Bilds generieren
+**Aktion:** Beschreibung eines Bilds generieren (Output englisch)
+
+**Aktion**: Enschlischen Beschreibungstext übersetzen lassen
 
 **Aktion:** SharePoint Liste - Element erstellen
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Ideen:
-
-* OCR - Text aus Rechnung extrahieren?
-
-
-
-Infos:
-
-* Mit Compose / Verfassen kann man sich Texte zur Wiederverwendung erstellen
-* 
-
-Mails testen:
-
-* https://temp-mail.org/de/
-
-  
