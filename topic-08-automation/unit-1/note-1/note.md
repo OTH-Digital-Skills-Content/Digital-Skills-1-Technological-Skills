@@ -21,6 +21,7 @@ Viele Unternehmen erledigen Dinge manuell mit hohem Personalaufwand und Potentia
 * Daten zwischen verschiedenen Systemen synchron halten (z.B. Buchhaltungssystem und CRM)
 * Rechnungen verarbeiten
 * Meetingprotokolle verteilen
+* usw.
 
 ## Was ist Power Automate?
 
@@ -51,11 +52,11 @@ Bildquelle: ChatGPT
 
 ![platform](img/tickets.png)
 
-Die Mitarbeiter können sich Tickets, die sie bearbeiten selbständig in eine weitere Spalte "In Bearbeitung" ziehen. Sobald das Ticket bearbeitet wurde, können die Mitarbeiter das Ticket mit der Antwort kommentieren und in die Spalte "erledigt" verschieben. Daraufhin versendet Power Automate automatisch eine Mail an den Kunden und fügt den Kommentar des Mitarbeiters in die Antwort mit ein. Der Status eines Tickets wird somit nachvollziehbar und die Supportmitarbeiter können auch bei Krankheit oder Urlaub des jeweils anderen Mitarbeiters weiter an den Tickets arbeiten.
+Die Mitarbeiter können sich Tickets, die sie bearbeiten selbständig in eine weitere Spalte "In Bearbeitung" ziehen. Sobald das Ticket bearbeitet wurde, können die Mitarbeiter das Ticket mit der Antwort kommentieren und in die Spalte "erledigt" verschieben. Daraufhin versendet Power Automate automatisch eine Mail an den Kunden und fügt den Kommentar des Mitarbeiters als Antwort ein. Der Status eines Tickets wird somit nachvollziehbar und die Supportmitarbeiter können auch bei Krankheit oder Urlaub des jeweils anderen Mitarbeiters weiter an den Tickets arbeiten.
 
 ## Urlaubsanträge
 
-**Szenario**: "My fresh pizza" muss sicherzustellen, dass nicht alle Mitarbeiter zur selben Zeit in den Urlaub gehen, da ansonsten die Produktion und der Versand stillstehen würden. Daher müssen die Mitarbeiter eine Mail an ihren Vorgesetzten schicken, der den Urlaub dann genehmigen oder ablehnen kann. Vergisst der Vorgesetzte die Mail, kann es zu Wartezeiten kommen und viele Mails zwischen Mitarbeiter und Vorgesetztem gehen hin und her.
+**Szenario**: "My fresh pizza" muss sicherzustellen, dass nicht alle Mitarbeiter zur selben Zeit in den Urlaub gehen, da ansonsten die Produktion und der Versand stillstehen würden. Daher müssen die Mitarbeiter und Mitarbeiterinnen eine Mail an ihren Vorgesetzten schicken, der den Urlaub dann genehmigen oder ablehnen kann. Vergisst der Vorgesetzte die Mail, kann es zu Wartezeiten kommen und viele Mails zwischen Mitarbeitern und Vorgesetztem gehen hin und her.
 
 Beispielsweise lässt die folgende Mail eines Mitarbeiters viele Fragen offen:
 
@@ -78,9 +79,11 @@ Weiterhin muss der Vorgesetzte manuell eine Excelliste mit den beantragten und g
 
 Dieser entscheidet dann und kann mit einem Klick den Antrag kommentieren und genehmigen oder ablehnen. Die Mitarbeiter werden automatisch über die Entscheidung informiert und die Liste mit den Urlaubsanträgen wird automatisch mit dem Ergebnis der Entscheidung aktualisiert. Somit werden Mails "eingespart" und der Status und das Ergebnis eines Antrags sind für alle transparent einsehbar. Der Vorgesetzte benötigt seine manuell gepflegte Urlaubsliste in Excel nicht mehr.
 
+### Funktionsprinzip
+
 In Power Automate lassen sich "Flows" erstellen, die den Ablauf der Automation steuern. Dazu lassen sich die folgenden Elemente kombinieren:
 
-* **Trigger** - Jeder Flow benötigt einen Auslöser. Dies kann manuell sein, z.B. durch einen Klick, oder durch ein Ereignis in einem Clouddienst (z.B. eine neue E-Mail trifft ein, ein neues Element in einer Liste wird angelegt, eine neue Zeile wird einem Excel-Dokument hinzugefügt)
+* **Trigger** - Jeder Flow benötigt einen Auslöser. Dieser kann **manuell** sein, z.B. durch einen Klick, oder durch **automatisch** durch ein Ereignis in einem Clouddienst (z.B. eine neue E-Mail trifft ein, ein neues Element in einer Liste wird angelegt, eine neue Zeile wird einem Excel-Dokument hinzugefügt) sein.
 * **Aktionen** - Jeder Flow verfügt über eine oder mehrere Aktionen. Aktionen sind die Dinge, die ein Workflow "tun" kann, wie beispielsweise E-Mails versenden, Dateien abspeichern, Exceldokumente aktualisieren, Chatnachrichten schreiben, einen neuen Task in einem Taskmanagement-Tool anlegen, etc.
 
 Die Entwicklung der Flows mit Triggern und Aktionen erfolgt dabei in einer graphischen Benutzeroberfläche (auch *low-code* genannt) und erlaubt Elemente, die auch in der klassischen Programmierung vorkommen, wie:
@@ -96,12 +99,12 @@ Vgl. die folgende Abbildung für ein Beispiel eines Flows:
 
 Im Hintergrund von Power Automate kommuninzieren die verbundenen Dienste über TCP/IP bzw. http, um Daten untereinander auszutauschen. Für den Benutzer wird die Kommunikation aber unter der Oberfläche versteckt. 
 
-Im Folgenden wird erklärt, wie sich Flows in Power Automate erstellen, testen und veröffentlichen lassen.
-
 ## Fazit Power Automate
 * Power Automate verbindet sich mit verschiedenen Diensten
 * Flows werden ausgelöst durch z.B. Änderungen in den verbundenen Diensten und lösen dann verschiedene Aktionen aus
 * Power Automate ist der „Kleber“ zwischen unterschiedlichen Anwendungen
+
+Im Folgenden wird erklärt, wie sich Flows in Power Automate erstellen, testen und veröffentlichen lassen.
 
 # Power Automate - Zugriff, Verbindungen, Hello World, Eingaben, Bedingungen, Debugging und Funktionen 
 ## Zugriff auf Power Automate
@@ -143,12 +146,12 @@ Eine Auswahl von Anwendungen mit denen sich Power Automate verbinden kann:
 * **Youtube**
 * **Zoom**
 
-Vollständige laufend aktualisierte Liste hier: https://learn.microsoft.com/en-us/connectors/connector-reference/connector-reference-powerautomate-connectors
+Eine vollständige, laufend aktualisierte Liste, finden Sie hier: https://learn.microsoft.com/en-us/connectors/connector-reference/connector-reference-powerautomate-connectors
 
-Um sich direkt in Power Automate einen Überblick über mögliche und bestehende Verbindungen zu verschaffen, links im Menü (unter Mehr) auf Verbindungen klicken. In der Suche lassen sich alle System anzeigen, mit denen man sich verbinden kann (z.B. Planner oder Google Tasks). Legt man hier eine Verbindung an, kann diese in den Flows genutzt werden.
+Um sich direkt in Power Automate einen Überblick über mögliche und bestehende Verbindungen zu verschaffen, links im Menü (unter **... Mehr**) auf Verbindungen klicken. In der Suche lassen sich alle Dienste anzeigen, mit denen man sich verbinden kann (z.B. Planner oder Google Tasks). Legt man hier eine Verbindung an, kann diese in den Flows genutzt werden.
 
 ## Hello World
-Als erster Beispiel soll ein Flow erstellt werden, der eine Benachrichtung verschickt, wenn der Flow gestartet wird.
+Als erstes Beispiel soll ein Flow erstellt werden, der eine Benachrichtung verschickt, wenn der Flow gestartet wird.
 
 Einen neuen Flow können Sie bei Power Automate über den Link "+ Erstellen" in der Navigation erzeugen, vgl. die folgende Abbildung:
 
