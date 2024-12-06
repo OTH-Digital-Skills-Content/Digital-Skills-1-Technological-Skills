@@ -161,7 +161,7 @@ Im folgenden Beispiel soll eine einfache Hello World Demo erstellt werden, die e
 
 Dazu: **Sofortiger Cloudflow wählen** - Dies ist der Auslöser (**Trigger** für Ihren Workflow). Sie können Workflows auch automatisch auslösen, z.B. wenn Sie eine Mail erhalten.
 
-In der Bearbeitungsansicht des Flows kann durch Klick nach dem Start des Flows eine Aktion hinzugefügt werden (E-Mail Benachrichtigung erhalten). Die Felder Betreff und Textkörper können angepasst werden, um den Inhalt der Benachrichtigung zu individualisieren:
+In der Bearbeitungsansicht des Flows kann durch Klick nach dem Start des Flows eine Aktion hinzugefügt werden (E-Mail Benachrichtigung erhalten). Die Felder **Betreff** und **Textkörper** können angepasst werden, um den Inhalt der Benachrichtigung zu individualisieren:
 ![platform](img/flow-edit.png)
 
 Anschließend den Workflow speichern und Testen. Achtung: Es kann mehrere Minuten dauern, bis Sie die Benachrichtigung erhalten.
@@ -175,11 +175,11 @@ Dazu wieder einen Flow mit einem manuellen Trigger erzeugen. Anschließend kann 
 
 ![Flow manueller Input](img/flow-manual-input.png)
 
-Erstellen Sie die Parameter wie dargestellt und Testen anschließend Ihren Flow:
+Erstellen Sie die Parameter wie dargestellt und testen anschließend Ihren Flow:
 
 ![Flow manueller Input Testen](img/flow-manual-input-test.png)
 
-Die Eingaben aus Schritten eines Flows lassen sich in späteren Schritten wieder auslesen und weiterverwenden. In diesem Beispiel sollen die Informationen aus dem manuellen Trigger verwendet werden, um eine Bestätigungsmail zu verschicken. Klickt man auf die Aktion "E-Mail Benachrichtigung erhalten", lässt sich die Mail um Bausteine des vorherigen Schritts erweitern. Klickt man dazu in den Feldern Betreff oder Textkörper auf das blaue Blitzsymbol, öffnet sich ein Dialogfeld, und die Daten aus dem vorherigen Schritt lassen sich als Platzhalter einfügen.
+Die Eingaben aus Schritten eines Flows lassen sich in späteren Schritten wieder auslesen und weiterverwenden. In diesem Beispiel sollen die Informationen aus dem manuellen Trigger verwendet werden, um eine Bestätigungsmail zu verschicken. Klickt man auf die Aktion "E-Mail Benachrichtigung erhalten", lässt sich die Mail um Bausteine des vorherigen Schritts erweitern. Klickt man dazu in den Feldern **Betreff** oder **Textkörper** auf das **blaue Blitzsymbol**, öffnet sich ein Dialogfeld, und die Daten aus dem vorherigen Schritt lassen sich als Platzhalter einfügen.
 
 ![Flow manueller Input für Mail](img/flow-manual-input-test-use_mail.png)
 
@@ -274,11 +274,11 @@ In diesem Schritt soll der Genehmigungsworkflow gestartet werden und die Antrags
 
 Zu Beginn muss dazu die Aktion "Starten und auf Genehmigung warten" aus dem Block "Genehmigungen" hinzugefügt werden. Als Genehmingstyp "Genehmigen/ablehnen: Erste Antwort" wählen, weil der Flow nach der ersten Antwort direkt weitergehen soll.
 
-Die restliche Konfiguration sieht wie folgt konfiguriert aus:
+Die restliche Konfiguration sieht wie folgt aus:
 
 ![Liste](img/urlaubsantrag-start.png)
 
-Die Felder bedeuten im Einzelnen (Erinnerung: Mit dem Blitz hinzufügen):
+Die Felder bedeuten im Einzelnen (Erinnerung: Mit dem **Blitz** hinzufügen):
 
 * **Titel:** Betreff der versendeten Mail
 * **Zugewiesen zu:** Genehmiger des Antrags - Muss Benutzer der OTH Regensburg sein
@@ -286,7 +286,7 @@ Die Felder bedeuten im Einzelnen (Erinnerung: Mit dem Blitz hinzufügen):
   * "Erstellt von DisplayName" - Name des Erstellers des Urlaubsantrags aus der Liste
   * "Titel" - Art des Urlaubs aus dem Listeneintrag
 
-Zusätzlich wird den die Urlaubsdaten noch mit einer Funktion (Erinnerung: Mit fx hinzufügen) wie folgt in eine für Deutschland übliche Anzeige formatiert:
+Zusätzlich wird den die Urlaubsdaten noch mit einer Funktion (Erinnerung: Mit **fx** hinzufügen) wie folgt in eine für Deutschland übliche Anzeige formatiert:
 
 ~~~
 formatDateTime(triggerBody()?['Startdatum'], 'dd.MM.yyyy')
@@ -346,9 +346,7 @@ Im letzten Schritt soll zusätzlich noch die Sharepointliste aktualisiert werden
 
 Um dieses Problem zu beheben, kann in Power Automate eine Variable ```Status Urlaubsantrag``` eingefügt werden, die in den Verzweigungen TRUE/FALSE auf den jeweiligen Wert gesetzt wird, der dann in der Liste aktualisiert werden soll, in diesem Fall ```genehmigt``` bzw. ```abgelehnt```.
 
-Um die Variable anzulegen wie folgt vorgehen:
-
-Vor der Verzweigung per + eine Aktion "Variable initialisieren" einfügen, dann suchen nach "variable" und die Variable ```Status Urlaubsantrag``` initialisieren (diese braucht erstmal keinen Wert):
+Um die Variable anzulegen wie folgt vorgehen: Vor der Verzweigung per + eine Aktion "Variable initialisieren" einfügen, dann suchen nach "variable" und die Variable ```Status Urlaubsantrag``` initialisieren (diese braucht erstmal keinen Wert):
 
 ![Variable intialisieren](img/urlaubsantrag-trigger-variable-init.png)
 
