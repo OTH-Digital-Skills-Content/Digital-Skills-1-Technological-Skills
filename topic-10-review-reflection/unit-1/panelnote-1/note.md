@@ -1,3 +1,3 @@
 
 
-Die Inhalte zur Challenge "Review & Reflection" folgen in Kürze.
+Die Inhalte zur Challenge "Review & Reflection" finden Sie am Ende des Semesters in ELO.
