@@ -17,6 +17,7 @@ ignorepin: 1994
 
 ignore : 
 - topic-01-welcome
+- topic-04-python1-update
 # - topic-02-it-infra
 # - topic-03-scratch
 # - topic-04-python1
