@@ -13,7 +13,7 @@ companions:
 #parent: course/digital-skills-alle-semester-github.netlify.app
 
 # https://tutors.dev/note/tutors-reference-manual/unit-1-getting-started/note-10-properties#large-language-model-support
-llm: 2
+llm: 1
 auth: 1
 ignorepin: 1994
 
