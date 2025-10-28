@@ -12,6 +12,7 @@ companions:
         color: info
 #parent: course/digital-skills-alle-semester-github.netlify.app
 
+llm: 2
 auth: 1
 ignorepin: 1994
 
