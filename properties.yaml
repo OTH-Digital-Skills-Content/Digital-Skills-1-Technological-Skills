@@ -18,14 +18,14 @@ auth: 1
 ignorepin: 1994
 
 ignore : 
-- topic-01-welcome
-# - topic-02-it-infra
-# - topic-03-scratch
-# - topic-04-python1
-# - topic-05-python2
-# - topic-06-sql-data
-# - topic-07-web
-# - topic-08-automation
-# - topic-09-cyber-sec
-# - topic-10-review-reflection
-# - topic-12-optional-link
+# - topic-01-welcome
+- topic-02-it-infra
+- topic-03-scratch
+- topic-04-python1
+- topic-05-python2
+- topic-06-sql-data
+- topic-07-web
+- topic-08-automation
+- topic-09-cyber-sec
+- topic-10-review-reflection
+- topic-12-optional-link
