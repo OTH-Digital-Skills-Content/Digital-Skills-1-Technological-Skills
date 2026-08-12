@@ -14,9 +14,8 @@ Internet, HTML, CSS, JavaScript
 
 
 
-> Alle Codebeispiele für diese Challenge sind auf replit.com abrufbar:
-> [https://replit.com/@mheckner/Digital-Skills08Web#index.html](https://replit.com/@mheckner/Digital-Skills08Web#index.html)
-> Mit einem Klick auf "Fork Repl" rechts oben können Sie diese in ein eignes Repl übertragen und auch Änderungen ausprobieren.
+> Alle Codebeispiele für diese Challenge finden Sie hier:
+> [https://github.com/OTH-Digital-Skills-Content/tech-skills-demo-code-lecture-web/blob/main/index.html](https://github.com/OTH-Digital-Skills-Content/tech-skills-demo-code-lecture-web/blob/main/index.html)
 
 
 # Das Internet

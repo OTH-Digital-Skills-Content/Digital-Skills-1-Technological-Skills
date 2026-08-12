@@ -13,9 +13,8 @@ Python und Informatik
 [[toc]]
 
 
-> Alle Codebeispiele für diese Challenge sind auf replit.com abrufbar:
-> [https://replit.com/@mheckner/Digital-Skills04Python1#agree.py](https://replit.com/@mheckner/Digital-Skills04Python1#agree.py)
-> Mit einem Klick auf "Fork Repl" rechts oben können Sie diese in ein eignes Repl übertragen und auch Änderungen ausprobieren.
+> Alle Codebeispiele für diese Challenge finden Sie hier:
+> [https://github.com/OTH-Digital-Skills-Content/tech-skills-demo-code-lecture-python-1/blob/main/agree.py](https://github.com/OTH-Digital-Skills-Content/tech-skills-demo-code-lecture-python-1/blob/main/agree.py)
 
 # Python
 
