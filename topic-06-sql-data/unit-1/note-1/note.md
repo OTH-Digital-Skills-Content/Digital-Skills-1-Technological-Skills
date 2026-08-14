@@ -167,7 +167,7 @@ Die Datenbankmanagementsysteme Oracle, MySQL, PostgreSQL und so weiter laufen al
 
 ## SQLite
 
-Wir verwenden der Einfachheit halber das Datenbankmanagementsystem SQLite. SQLite läuft nicht als Serverprozess. Stattdessen bietet es uns einfach nur eine SQL-Schnittstelle zu einer Datei auf unserer Festplatte. Anders als die CSV-Datei vom Data-Science-Beispiel lässt sicht  diese Datei aber nicht einfach in einem Texteditor öffnen. Will man mit der Datenbank arbeiten, verwendet man SQLite. Und jedes SQL-Kommando, was man dann stellt, wird intern verarbeitet, ausgeführt und liefert uns schließlich ein Ergebnis zurück.
+Wir verwenden der Einfachheit halber das Datenbankmanagementsystem SQLite. SQLite läuft nicht als Serverprozess. Stattdessen bietet es uns einfach nur eine SQL-Schnittstelle zu einer Datei auf unserer Festplatte. Anders als die CSV-Datei vom Data-Science-Beispiel lässt sich diese Datei aber nicht einfach in einem Texteditor öffnen. Will man mit der Datenbank arbeiten, verwendet man SQLite. Und jedes SQL-Kommando, was man dann stellt, wird intern verarbeitet, ausgeführt und liefert uns schließlich ein Ergebnis zurück.
 
 Auf der Linux-Shell (nicht in der Python-Konsole!) können wir eine neue Datenbank anlegen:
 

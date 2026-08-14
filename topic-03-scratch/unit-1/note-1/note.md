@@ -370,7 +370,7 @@ Die Einbindung weiterer Figuren soll im Folgenden näher beleuchtet werden.
 
 Zuerst klicken wir im Bereich "Figur" unten rechts auf das Symbol mit der Katze:
 
-[](img/71.png)
+![](img/71.jpg)
 
 Hier sehen wir viele verschiedene Figuren, Gegenstände, etc. 
 In unserem vorliegenden Beispiel wählen wir die Figur "Chick", indem wir sie mit der linken Maustaste anklicken.

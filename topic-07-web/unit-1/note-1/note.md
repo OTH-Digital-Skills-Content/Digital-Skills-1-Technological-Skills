@@ -335,7 +335,7 @@ Der Wert des Attributs ```href``` bestimmt das Ziel des Links, der Inhalt des El
 # URL-Parameter mit GET
 Mit einer URL lassen sich nicht nur Dateien von einem Webserver abrufen, sondern auch Informationen an den Webserver übertragen.
 
-Sucht man man mit Google nach einem Begriff, ändert sich die URL im Browser wie folgt:
+Sucht man mit Google nach einem Begriff, ändert sich die URL im Browser wie folgt:
 
 ```https://www.google.de/search?q=robot&...``` 
 
