@@ -796,7 +796,7 @@ Die Seite beginnt mit einem ```<div>``` Tag, der die Inhalte einrückt und an di
 
 Kleinere Anpassungen der Abstände erfolgen mit den CSS-Klassen ```w-25```, ```mt-4``` oder ```m-3```. Sie müssen Bootstrap nicht bis ins Detail beherrschen, aber erkennen, dass Frameworks helfen, Entwicklungsarbeit zu beschleunigen und Anpassungen im Detail (wie die Veränderung der Abstände) dann als Finetuning erfolgen kann.
 
-# JavaScript
+# JavaScript (optional)
 Bisher haben wir HTML, CSS und Bootstrap kennengelernt. Zusammen helfen Sie, die Webseiten ansprechend zu gestalten. Die Webseiten sind aber immer statisch, d. h. Nutzer können auf der Seite zwar auf Links klicken, sie werden dann aber immer zu einer weiteren Seite weitergeleitet. Mithilfe von **JavaScript** lassen sich Webseiten interaktiver gestalten.
 
 Die Syntax ähnelt der Syntax von Python und für alle Scratch Elemente gibt es Entsprechungen in JavaScript:
