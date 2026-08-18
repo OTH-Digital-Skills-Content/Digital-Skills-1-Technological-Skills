@@ -1,9 +1,1 @@
 Challenge - Mental Health in einer digitalen Welt
-
-A new record number of days lost due to mental illness in 2021 and a new negative record in 2022 for the highest number of sick days in over a quarter of a century means that the topic of health in companies is becoming an increasingly important issue and is a concern both for managers and HR departments alike. As a result, human resources developers and corporate health management are giving this issue special attention. So far, the focus has primarily been on the health of the individual. However, more and more teams are becoming unbalanced due to the pressure to adapt to constantly changing conditions, and at the same time these teams are more important than ever for a company´s ability to be innovative and to perform. In an increasingly digitalised world, complexity is also on the rise.
-
-As teams can only develop to their full potential if they are "healthy", it is all the more important that we address the question: How can we consciously contribute to maintaining and promoting the health of hybrid and virtual teams?
-
-The term "mental team health" is used in the course to describe team dynamics and mental strength to be able to overcome challenges together. The focus is on working together in a healthy way. This course aims to find an answer to this issue from a holistic perspective using a threefold approach based on consciously caring for one's own health, forming relationships and creating supportive framework conditions, all of which are significantly influenced by leaders.
-
-Quelle: \url{https://open.vhb.org/blocks/occoursemetaselect/detailpage.php?id=348&lang=de}
