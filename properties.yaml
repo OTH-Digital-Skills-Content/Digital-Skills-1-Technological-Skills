@@ -23,9 +23,10 @@ ignore :
 # - topic-03-scratch
 # - topic-04-python1
 # - topic-05-python2
+# - topic-08-mental-health-digital
 - topic-06-sql-data
 - topic-07-web
-- topic-08-automation
+- topic-XX-automation
 - topic-09-cyber-sec
 - topic-10-review-reflection
 - topic-12-optional-link
