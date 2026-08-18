@@ -4,4 +4,4 @@ As teams can only develop to their full potential if they are "healthy", it is a
 
 The term "mental team health" is used in the course to describe team dynamics and mental strength to be able to overcome challenges together. The focus is on working together in a healthy way. This course aims to find an answer to this issue from a holistic perspective using a threefold approach based on consciously caring for one's own health, forming relationships and creating supportive framework conditions, all of which are significantly influenced by leaders.
 
-Quelle: \url{https://open.vhb.org/blocks/occoursemetaselect/detailpage.php?id=348&lang=de}
+Quelle: [https://open.vhb.org/blocks/occoursemetaselect/detailpage.php?id=348&lang=de]
