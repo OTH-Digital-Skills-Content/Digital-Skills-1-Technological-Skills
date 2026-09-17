@@ -21,8 +21,8 @@ ignore :
 # - topic-01-welcome
 # - topic-02-it-infra
 # - topic-03-scratch
-# - topic-04-python1
-# - topic-05-python2
+- topic-04-python1
+- topic-05-python2
 - topic-08-mental-health-digital
 - topic-06-sql-data
 - topic-07-web
