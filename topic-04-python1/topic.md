@@ -1,4 +1,4 @@
-# Challenge - Python und Informatik
+# Python und Informatik
 
 
 Einführung Codespaces, Python

@@ -1,3 +1,3 @@
-# Challenge - IT Infrastruktur OTH
+# IT Infrastruktur OTH
 
 Überblick über die IT Infrastruktur

@@ -1,4 +1,4 @@
-# Challenge - Web
+# Web
 
 
 HTML, CSS, JS
