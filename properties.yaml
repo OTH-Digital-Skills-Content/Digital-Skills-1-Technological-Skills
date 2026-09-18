@@ -17,7 +17,8 @@ llm: 1
 auth: 1
 ignorepin: 1994
 
-ignore : 
+ignore :
+- topic-01-FAQ
 # - topic-01-welcome
 # - topic-02-it-infra
 # - topic-03-scratch
