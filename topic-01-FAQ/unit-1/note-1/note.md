@@ -12,9 +12,27 @@ FAQ & Troubleshooting
 
 [[toc]]
 
+# Allgemeines und Organisatorisches
 
-# FAQ & Troubleshooting
+## Wie Viele Punkte erhalte ich auf die Challenges?
+Die Punkte für den praktischen Leistungsnachweis verteilen sich wie folgt auf die Challenges:
 
+* IT-Infrastruktur: 5
+* Scratch: 7
+* Python 1: Hello	2
+* Python 1: Blocks	7
+* Python 2: Phone Book	7
+* SQL: MonstER Park	5
+* SQL: Island	5
+* KI Einführung: 3
+* Web: Homepage: 9
+* Cybersecurity: 3
+* Digital Wellness: 7
+
+## Was ist ein Bonus?! Wie bekomme ich den?
+Sehen Sie sich dazu den Einführungsfoliensatz in ELO an.
+
+# Python und Codespaces
 Antworten auf häufige Fragen und Probleme, die während der Arbeit mit Codespaces und beim Abgeben Ihrer Labs auftreten können. Diese Seite gilt für alle Labs im Kurs, nicht nur für ein bestimmtes Thema.
 
 ## Mein Codespace sagt, er sei im "Recovery Mode"
