@@ -26,7 +26,7 @@ Die Punkte für den praktischen Leistungsnachweis verteilen sich wie folgt auf d
 * SQL: Island	5
 * KI Einführung: 3
 * Web: Homepage: 9
-* Cybersecurity: 3
+* Cybersecurity: 6
 * Digital Wellness: 7
 
 ## Was ist ein Bonus?! Wie bekomme ich den?
