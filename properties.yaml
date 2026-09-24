@@ -1,16 +1,16 @@
 #slack: https://zusatzstudium-wys8878.slack.com
-moodle: https://elearning.oth-regensburg.de/course/view.php?id=7177
+moodle: https://elearning.oth-regensburg.de/course/view.php?id=8504
 # youtube: https://www.youtube.com/
 # zoom: https://zoom.us/
 credits: OTH Regensburg
 companions:
   piazza:
-      link: https://piazza.com/class/mfnoqcxytc574y
+      link: https://piazza.com/oth-regensburg.de/fall2026/techskills/home
       title: Fragen & Antworten
       icon:
         type: academicons:piazza
         color: info
-#parent: course/digital-skills-alle-semester-github.netlify.app
+parent: course/technological-skills.netlify.app
 
 # https://tutors.dev/note/tutors-reference-manual/unit-1-getting-started/note-10-properties#large-language-model-support
 llm: 1
