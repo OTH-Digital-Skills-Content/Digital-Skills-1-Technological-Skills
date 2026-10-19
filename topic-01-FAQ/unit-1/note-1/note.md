@@ -73,7 +73,7 @@ Der Befehl ```check``` (und auch ```submit```!) funktioniert nur im Startverzeic
 @mheckner ➜ /workspaces/technology-skills-hello-mheckner (main) $ check
 ~~~
 
-... und das hier **NICHT**, weil Sie sich im Unterordner ```hello_world```befinden (Tipp: mit ```cd ..```kann man einen Ordner zurück, bzw. nach oben wechseln):
+... und das hier **NICHT**, weil Sie sich im Unterordner ```hello_world```befinden (Tipp: mit ```cd ..``` kann man einen Ordner zurück, bzw. nach oben wechseln):
 ~~~shell
 @mheckner ➜ /workspaces/technology-skills-hello-mheckner/hello_world (main) $ check
 ~~~
