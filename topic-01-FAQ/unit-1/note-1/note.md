@@ -66,3 +66,14 @@ Klicken Sie auf das Repository, für das Sie überprüfen wollen, ob die Abgabe 
 ![github_repo_detail](img/github_repo_detail.png)
 
 Der grüne Haken neben "updated version" zeigt an, dass Sie alle Testfälle bestanden haben. Falls Sie nicht alle Testfälle bestanden haben, steht dort ein rotes Kreuz. Wenn Sie die abgegebene Datei anklicken und den selben Code sehen, den Sie in Codespaces bearbeitet haben, dann bedeutet das, dass die Abgabe über ```submit``` funktioniert hat.
+
+## Der Befehl check funktioniert bei mir nicht (Fehler: grep: .classroom50.yaml: No such file or directory)
+Der Befehl ```check``` (und auch ```submit```!) funktioniert nur im Startverzeichnis Ihres Codespaces. D.h., das hier funktioniert...
+~~~shell
+@mheckner ➜ /workspaces/technology-skills-hello-mheckner (main) $ check
+~~~
+
+... und das hier **NICHT**, weil Sie sich im Unterordner ```hello_world```befinden (Tipp: mit ```cd ..```kann man einen Ordner zurück, bzw. nach oben wechseln):
+~~~shell
+@mheckner ➜ /workspaces/technology-skills-hello-mheckner/hello_world (main) $ check
+~~~
