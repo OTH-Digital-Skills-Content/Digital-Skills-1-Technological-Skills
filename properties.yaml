@@ -25,7 +25,7 @@ ignore :
 # - topic-04-python1
 # - topic-05-python2
 - topic-09-mental-health-digital
-- topic-06-sql-data
+# - topic-06-sql-data
 - topic-07-ai-drivers-license
 - topic-08-web
 - topic-10-cyber-sec
